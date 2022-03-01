@@ -19,10 +19,26 @@ const cardVariants = {
 
 const CountDown = () => {
 	const timeUntilLaunchDate = dayjs(launchDate).diff(dayjs());
-	const [timeLeft, { start }] = useCountDown(timeUntilLaunchDate, interval);
+	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
+
+	const onFocus = () => {
+		start();
+	};
+
+	const onBlur = () => {
+		pause();
+	};
 
 	useEffect(() => {
-		start();
+		window.addEventListener("focus", onFocus);
+		window.addEventListener("blur", onBlur);
+
+		onFocus();
+
+		return () => {
+			window.removeEventListener("focus", onFocus);
+			window.removeEventListener("blur", onBlur);
+		};
 	}, []);
 
 	const days = dayjs(timeLeft).format("D");

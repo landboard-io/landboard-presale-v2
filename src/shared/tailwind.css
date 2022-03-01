@@ -52,7 +52,7 @@ h2 {
 	box-shadow: 0px 1px 2px 0px #0000000d;
 }
 .btn.round {
-	@apply z-10 grid w-12 h-12 rounded-full bg-purple-darkest place-content-center;
+	@apply z-10 grid w-12 h-12 rounded-full bg-purple-darkest place-content-center md:h-[3.75rem] md:w-[3.75rem] md:text-2xl;
 }
 .btn.round.active {
 	@apply bg-purple;
@@ -81,13 +81,13 @@ hr {
 
 /* COUNTDOWN */
 .countdown {
-	@apply flex items-center gap-3 font-bold;
+	@apply flex items-center gap-3 font-bold md:gap-10 md:text-5xl;
 }
 .countdown__card {
-	@apply flex flex-col w-[3.75rem] h-[5.625rem] font-medium rounded;
+	@apply flex flex-col w-[3.75rem] h-[5.625rem] md:w-[11.25rem] md:h-[10rem] md:text-lg font-medium rounded;
 }
 .countdown__time {
-	@apply grid flex-1 pb-2 text-xl bg-purple-darkest place-content-center;
+	@apply grid flex-1 pb-2 text-xl font-bold bg-purple-darkest place-content-center md:text-6xl;
 }
 .countdown__measure {
 	@apply p-1 bg-purple;
@@ -95,7 +95,7 @@ hr {
 
 /* CARD */
 .card {
-	@apply min-h-[20.75rem] max-w-[22rem] relative pt-10 flex flex-col w-full rounded bg-purple-darkest items-center;
+	@apply min-h-[20.75rem] max-w-[22rem] md:w-[32rem] relative pt-10 flex flex-col w-full rounded bg-purple-darkest items-center;
 }
 .card__date {
 	@apply flex flex-col absolute -top-8 w-[3.75rem] h-[5.625rem] font-medium;
@@ -108,7 +108,7 @@ hr {
 }
 /* CONTAINER OVERRIDE */
 .container {
-	@apply px-5 py-5 max-w-none md:py-8 md:px-[7.5rem] flex flex-col gap-5 z-[100] relative;
+	@apply px-5 pt-5 pb-20 md:pb-40 max-w-none md:py-8 md:px-[7.5rem] flex flex-col gap-5 z-[100] relative;
 }
 
 /* SCROLLBAR */

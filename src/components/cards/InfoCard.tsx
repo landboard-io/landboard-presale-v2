@@ -24,7 +24,7 @@ const InfoCard = () => {
 				<li>Tokens supply: 2.500.000 $LAND (2.5%)</li>
 				<li>Whitelisted addresses: 500</li>
 			</ul>
-			<div className="relative grid w-full h-10 mt-10 place-content-center bg-purple">
+			<div className="relative grid w-full h-10 mt-10 md:mt-auto place-content-center bg-purple">
 				<p className="font-bold">2.500.000 tokens sold out (100%)</p>
 			</div>
 		</motion.div>

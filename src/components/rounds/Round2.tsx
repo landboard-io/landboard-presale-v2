@@ -37,7 +37,7 @@ const Round1 = () => {
 			transition={{ duration: 0.5 }}
 			className="flex flex-col items-center gap-5 text-center">
 			<CountDown />
-			<motion.div variants={textVariants} className="flex flex-col gap-3">
+			<motion.div variants={textVariants} className="flex flex-col gap-3 mt-5">
 				<h1>
 					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE SOON
 				</h1>
@@ -46,8 +46,10 @@ const Round1 = () => {
 			<Button className="filled w-[18.75rem] mt-5 mb-8" animate>
 				<Maiar /> Connect to Wallet
 			</Button>
-			<InfoCard />
-			<BuyCard />
+			<div className="flex flex-col gap-10 md:gap-32 md:flex-row">
+				<InfoCard />
+				<BuyCard />
+			</div>
 		</motion.div>
 	);
 };

@@ -28,8 +28,10 @@ const Round1 = () => {
 				<span className="text-purple">ROUND 1</span> - LAND TOKEN PRESALE SOLD OUT
 			</h1>
 			<p className="mb-10">Round 1 presale ended on 28 February 2022 05:00 PM GMT +02</p>
-			<InfoCard />
-			<BuyCard />
+			<div className="flex flex-col gap-10 md:flex-row">
+				<InfoCard />
+				<BuyCard />
+			</div>
 		</motion.div>
 	);
 };
