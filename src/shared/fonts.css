@@ -1,0 +1,63 @@
+@font-face {
+	font-family: "Geometria";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/geometria/Geometria-Bold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geometria";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/geometria/Geometria-ExtraBold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geometria";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/geometria/Geometria.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geometria";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/geometria/Geometria-Medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geometria";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/geometria/Geometria-Heavy.woff2") format("woff2");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geometria";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/geometria/Geometria-Heavy.woff2") format("woff2");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Lato";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/lato/Lato-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Lato";
+	src: url("https://landboard-landing.vercel.app/assets/fonts/lato/Lato-Regular_1.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

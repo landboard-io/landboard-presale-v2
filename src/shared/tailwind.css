@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BODY */
+body,
+#__next {
+	@apply max-w-full min-h-screen p-0 m-0 overflow-x-hidden text-white bg-purple-darker;
+}
+main {
+	@apply w-full min-h-screen overflow-y-hidden;
+}
+
+/* TYPOGRAPHY */
+label > span {
+	@apply block mb-1 text-sm font-semibold leading-4;
+}
+
+.btn {
+	@apply font-bold;
+	font-family: "Lato", sans-serif;
+}
+
+/* INPUT */
+.input-container {
+	@apply relative flex flex-col gap-3;
+}
+.input-container > input {
+	@apply w-full h-12 px-5 py-3 font-medium border rounded outline-none bg-purple-darker border-purple;
+}
+.input-container > .tag {
+	@apply absolute p-2 text-xs rounded right-3 bottom-1 bg-purple-darkest;
+}
+
+p {
+	font-family: "Lato", sans-serif;
+	@apply text-lg font-medium leading-8;
+}
+
+h1 {
+	@apply text-3xl leading-[3rem] text-center md:text-left md:text-6xl font-bold md:leading-[5rem];
+}
+
+h2 {
+	@apply text-3xl font-semibold text-center;
+}
+
+/* BUTTONS */
+.btn {
+	@apply inline-flex items-center justify-center h-12 gap-2 px-4 py-3 font-bold;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px 0px #0000000d;
+}
+.btn.round {
+	@apply z-10 grid w-12 h-12 rounded-full bg-purple-darkest place-content-center;
+}
+.btn.round.active {
+	@apply bg-purple;
+}
+.btn.filled {
+	@apply text-white;
+	background-image: linear-gradient(120deg, #8e2de2 0%, #4a00e0 99%);
+	background-size: 200% auto;
+	transition: 0.5s;
+}
+.btn.filled:hover {
+	background-position: bottom right;
+}
+.btn.filled:disabled {
+	@apply opacity-90;
+	background-color: #2f273a;
+	background-image: none;
+}
+.btn.outline {
+	@apply border-2 outline-none text-purple border-purple;
+}
+
+hr {
+	@apply w-full mb-8 border-gray opacity-10;
+}
+
+/* COUNTDOWN */
+.countdown {
+	@apply flex items-center gap-3 font-bold;
+}
+.countdown__card {
+	@apply flex flex-col w-[3.75rem] h-[5.625rem] font-medium rounded;
+}
+.countdown__time {
+	@apply grid flex-1 pb-2 text-xl bg-purple-darkest place-content-center;
+}
+.countdown__measure {
+	@apply p-1 bg-purple;
+}
+
+/* CARD */
+.card {
+	@apply min-h-[20.75rem] max-w-[22rem] relative pt-10 flex flex-col w-full rounded bg-purple-darkest items-center;
+}
+.card__date {
+	@apply flex flex-col absolute -top-8 w-[3.75rem] h-[5.625rem] font-medium;
+}
+.card__date-day {
+	@apply grid h-12 text-xl rounded-t-md w-[3.75rem] bg-purple place-content-center;
+}
+.card__date-month {
+	@apply grid h-6 font-bold uppercase bg-white text-purple place-content-center;
+}
+/* CONTAINER OVERRIDE */
+.container {
+	@apply px-5 py-5 max-w-none md:py-8 md:px-[7.5rem] flex flex-col gap-5 z-[100] relative;
+}
+
+/* SCROLLBAR */
+body::-webkit-scrollbar {
+	@apply w-3 cursor-pointer;
+}
+body::-webkit-scrollbar-thumb {
+	@apply rounded bg-purple;
+}
+body::-webkit-scrollbar-thumb:hover {
+	@apply bg-opacity-90;
+}
+
+/* TEXT SELECTION */
+::-moz-selection {
+	@apply text-white bg-purple;
+}
+::selection {
+	@apply text-white bg-purple;
+}
