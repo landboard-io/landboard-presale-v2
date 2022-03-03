@@ -41,13 +41,24 @@ const Round1 = () => {
 				<h1>
 					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE SOON
 				</h1>
-				<p>Round 2 presale starts on 9 March 2022 05:00 PM GMT +02:00</p>
+				<p>Round 2 presale starts on 15 March 2022 18:00 GMT +02:00</p>
 			</motion.div>
-			<Button className="filled w-[18.75rem] mt-5 mb-8" animate>
+			<Button className="filled w-[18.75rem]" containerClassname="mt-5 mb-8" disabled animate>
 				<Maiar /> Connect to Wallet
 			</Button>
 			<div className="flex flex-col gap-10 md:gap-32 md:flex-row">
-				<InfoCard />
+				<InfoCard
+					day={15}
+					month="Mar"
+					title="Round 2 - Presale Soon"
+					details={[
+						"Price per token: 0.0002 $EGLD",
+						"Tokens supply: 2.500.000 $LAND (2.5%)",
+						"Whitelisted addresses: 500",
+					]}
+					totalSold={0}
+					percentage={0}
+				/>
 				<BuyCard />
 			</div>
 		</motion.div>

@@ -3,9 +3,6 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@elrondnetwork/dapp-core": "1.0.0",
-		"@elrondnetwork/dapp-utils": "0.1.3",
-		"@elrondnetwork/erdjs": "9.0.3",
 		"axios": "^0.26.0",
 		"dayjs": "^1.10.8",
 		"framer": "^2.0.0",

@@ -5,7 +5,7 @@ import Round2 from "./Round2";
 import RoundPicker from "./RoundPicker";
 
 const Presale = () => {
-	const [round, setRound] = useState(1);
+	const [round, setRound] = useState(2);
 
 	return (
 		<div className="z-10">

@@ -3,7 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import useCountDown from "react-countdown-hook";
 import { motion } from "framer-motion";
 
-const launchDate = "2022-03-05";
+const launchDate = "2022-03-15 18:00:00";
 const interval = 1000;
 
 const cardVariants = {
