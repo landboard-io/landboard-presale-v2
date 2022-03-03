@@ -1,6 +1,6 @@
 import Button from "components/buttons";
 import Input from "components/input";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const variants = {
 	hidden: {

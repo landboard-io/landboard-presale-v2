@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 import { Fragment } from "react";
 
 const ButtonContent = ({ disabled, link, className, type, children, external, ...rest }: any) => {

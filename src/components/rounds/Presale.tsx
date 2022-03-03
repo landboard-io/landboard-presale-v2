@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import React, { useState } from "react";
 import Round1 from "./Round1";
 import Round2 from "./Round2";

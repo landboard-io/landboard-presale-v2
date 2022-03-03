@@ -3,7 +3,7 @@ import BuyCard from "components/cards/BuyCard";
 import InfoCard from "components/cards/InfoCard";
 import CountDown from "components/countdown";
 import Maiar from "components/icons/Maiar";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const variants = {
 	hidden: {

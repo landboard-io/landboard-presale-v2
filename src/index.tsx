@@ -1,7 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import "./shared/tailwind.css";
 import "./shared/fonts.css";
+
+import React from "react";
+import ReactDOM from "react-dom";
 import App from "./App";
 
 ReactDOM.render(

@@ -3,10 +3,27 @@ import NavBar from "./components/navbar";
 import Particles from "react-tsparticles";
 import particlesConfig from "./particlesConfig.json";
 import { Fragment } from "react";
+// import { DappUI, DappProvider } from "@elrondnetwork/dapp-core";
+
+// const environment = "devnet";
+
+// const {
+// 	TransactionsToastList,
+// 	SignTransactionsModals,
+// 	NotificationModal,
+// 	DappCorePages: { UnlockPage },
+// } = DappUI;
 
 const App = () => {
 	return (
+		// <DappProvider
+		// 	environment={environment}
+		// 	customNetworkConfig={{ name: "customConfig", apiTimeout: 6000 }}
+		// 	completedTransactionsDelay={200}>
 		<Fragment>
+			{/* <TransactionsToastList />
+			<NotificationModal />
+			<SignTransactionsModals className="custom-class-for-modals" /> */}
 			<NavBar />
 			<main className="container">
 				<Presale />
@@ -16,6 +33,7 @@ const App = () => {
 				</div>
 			</main>
 		</Fragment>
+		// </DappProvider>
 	);
 };
 

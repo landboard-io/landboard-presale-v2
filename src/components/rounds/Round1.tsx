@@ -1,6 +1,6 @@
 import BuyCard from "components/cards/BuyCard";
 import InfoCard from "components/cards/InfoCard";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const variants = {
 	hidden: {

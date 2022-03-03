@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import React, { Fragment, useEffect } from "react";
 import useCountDown from "react-countdown-hook";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const launchDate = "2022-03-15 18:00:00";
 const interval = 1000;
