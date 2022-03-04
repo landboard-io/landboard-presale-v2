@@ -75,6 +75,14 @@ h2 {
 	@apply border-2 outline-none text-purple border-purple;
 }
 
+.account-button__address {
+	@apply relative bg-purple-darkest  rounded grid place-content-center h-12 px-5 py-4;
+}
+
+.account-button__tag {
+	@apply absolute -top-5 left-10 px-3 py-1.5 text-sm bg-purple mx-auto font-bold rounded text-white grid place-content-center;
+}
+
 hr {
 	@apply w-full mb-8 border-gray opacity-10;
 }

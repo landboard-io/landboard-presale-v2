@@ -36,10 +36,6 @@ const textVariants = {
 };
 
 const Round1 = () => {
-	const { isLoggedIn, ...rest } = useGetLoginInfo();
-
-	console.log("rest", rest);
-
 	return (
 		// @ts-ignore
 		<motion.div
@@ -56,13 +52,6 @@ const Round1 = () => {
 				<p>Round 2 presale starts on 15 March 2022 20:00 GMT +02:00</p>
 			</motion.div>
 			<div className="flex flex-col items-center md:flex-row gap-5 md:gap-10 mt-5 mb-8">
-				{!isLoggedIn && <WalletsDropdown />}
-				{isLoggedIn && (
-					<Button className="filled w-[18.75rem]" animate>
-						<Unlock />
-						Disconnect
-					</Button>
-				)}
 				<Button
 					className="outline w-[18.75rem]"
 					external="https://docs.google.com/forms/d/e/1FAIpQLSfo4h-Ou7uu1EKsv8b930xo9xWmk85L5s8UMAF-dE1kMlQMJQ/viewform"

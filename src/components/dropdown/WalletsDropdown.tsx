@@ -36,7 +36,7 @@ const WalletsDropdown = () => {
 	};
 
 	return (
-		<motion.div className="relative" onHoverStart={handleToggle} onHoverEnd={handleToggle}>
+		<motion.div className="relative" onHoverStart={handleToggle} onHoverEnd={handleToggle} onClick={handleToggle}>
 			<Button className="z-10 filled w-[14rem]" animate>
 				<Maiar />
 				Connect with Wallet

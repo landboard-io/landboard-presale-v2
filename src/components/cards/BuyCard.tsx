@@ -1,7 +1,8 @@
+import { getAccountBalance, useGetAccountInfo } from "@elrondnetwork/dapp-core";
 import Button from "components/buttons";
 import Input from "components/input";
 import { motion } from "framer-motion/dist/framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const variants = {
 	hidden: {
@@ -17,7 +18,9 @@ const variants = {
 const conversionRate = 0.0003;
 
 const BuyCard = () => {
-	// add conversion from land to egld
+	const { address, ...rest } = useGetAccountInfo();
+
+	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldAmount, setEgldAmount] = useState("0");
 	const [landAmount, setLandAmount] = useState("0");
 
@@ -30,6 +33,14 @@ const BuyCard = () => {
 		setLandAmount(e.target.value);
 		setEgldAmount((e.target.value * conversionRate).toFixed(4));
 	};
+
+	useEffect(() => {
+		if (address)
+			getAccountBalance(address).then((balance) => {
+				console.log("balance", balance);
+				setTotalEgldBalance(balance);
+			});
+	}, [address]);
 
 	const disabled = egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount;
 
@@ -47,6 +58,7 @@ const BuyCard = () => {
 					hideComingSoon>
 					BUY $LAND
 				</Button>
+				<span className="text-xs font-bold">1 EGLD= $133 | 1 EGLD = 443333 LAND</span>
 			</form>
 		</motion.div>
 	);
