@@ -14,6 +14,7 @@ const variants = {
 };
 
 const BuyCard = () => {
+	// add conversion from land to egld
 	return (
 		<motion.div variants={variants} className="pb-10 card">
 			<h2 className="mb-10">Buy LAND Token</h2>

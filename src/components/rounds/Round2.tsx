@@ -45,7 +45,7 @@ const Round1 = () => {
 				<h1>
 					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE SOON
 				</h1>
-				<p>Round 2 presale starts on 15 March 2022 18:00 GMT +02:00</p>
+				<p>Round 2 presale starts on 15 March 2022 20:00 GMT +02:00</p>
 			</motion.div>
 			<div className="flex flex-col md:flex-row gap-5 md:gap-10 mt-5 mb-8">
 				<Button className="filled w-[18.75rem]" disabled animate>
