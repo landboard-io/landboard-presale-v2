@@ -43,7 +43,7 @@ const InfoCard = ({ day, month, title, details, totalSold, percentage }: InfoCar
 			</ul>
 			<div className="relative grid w-full h-10 mt-10 md:mt-auto place-content-center bg-purple">
 				<p className="font-bold">
-					{totalSold} tokens sold out ({percentage})
+					{totalSold} tokens sold out ({percentage}%)
 				</p>
 			</div>
 		</motion.div>
