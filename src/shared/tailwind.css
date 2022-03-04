@@ -93,9 +93,22 @@ hr {
 	@apply p-1 bg-purple;
 }
 
+/* WALLETS DROPDOWN */
+.wallets-dropdown {
+	@apply absolute top-12 right-0 z-[100] bg-purple-darker flex flex-col gap-5 rounded-b w-full;
+	box-shadow: 0px 1px 2px 0px #0000000d;
+}
+
+.dapp-core-ui-component {
+	@apply py-2.5;
+}
+.dapp-core-ui-component:hover {
+	@apply cursor-pointer transition-colors duration-300 bg-purple-darkest;
+}
+
 /* CARD */
 .card {
-	@apply min-h-[20.75rem] max-w-[22rem] md:w-[32rem] relative pt-10 flex flex-col w-full rounded bg-purple-darkest items-center;
+	@apply min-h-[20.75rem] w-[23rem] md:min-h-[24rem]  md:w-[25rem] relative pt-10 flex flex-col rounded bg-purple-darkest items-center;
 }
 .card__date {
 	@apply flex flex-col absolute -top-8 w-[3.75rem] h-[5.625rem] font-medium;

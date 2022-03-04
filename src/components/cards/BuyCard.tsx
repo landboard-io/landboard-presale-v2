@@ -1,6 +1,7 @@
 import Button from "components/buttons";
 import Input from "components/input";
 import { motion } from "framer-motion/dist/framer-motion";
+import { useState } from "react";
 
 const variants = {
 	hidden: {
@@ -13,14 +14,37 @@ const variants = {
 	},
 };
 
+const conversionRate = 0.0003;
+
 const BuyCard = () => {
+	// add conversion from land to egld
+	const [egldAmount, setEgldAmount] = useState("0");
+	const [landAmount, setLandAmount] = useState("0");
+
+	const handleChangeEgldAmount = (e: any) => {
+		setEgldAmount(e.target.value);
+		setLandAmount((e.target.value / conversionRate).toFixed(4));
+	};
+
+	const handleChangeLandAmount = (e: any) => {
+		setLandAmount(e.target.value);
+		setEgldAmount((e.target.value * conversionRate).toFixed(4));
+	};
+
+	const disabled = egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount;
+
 	return (
 		<motion.div variants={variants} className="pb-10 card">
 			<h2 className="mb-10">Buy LAND Token</h2>
 			<form className="flex flex-col gap-5 text-left">
-				<Input label="YOU PAY" tag="EGLD" type="number" />
-				<Input label="YOU GET" tag="LAND" type="number" />
-				<Button className="filled w-[16.875rem]" containerClassname="mt-5" type="submit" disabled>
+				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
+				<Input label="YOU PAY" tag="EGLD" type="number" value={egldAmount} onChange={handleChangeEgldAmount} />
+				<Button
+					className="filled w-[16.875rem]"
+					containerClassname="mt-5"
+					type="submit"
+					disabled={disabled}
+					hideComingSoon>
 					BUY $LAND
 				</Button>
 			</form>

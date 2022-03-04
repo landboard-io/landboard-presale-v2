@@ -5,6 +5,12 @@ import CountDown from "components/countdown";
 import Maiar from "components/icons/Maiar";
 import { motion } from "framer-motion/dist/framer-motion";
 import { DappUI, useGetLoginInfo } from "@elrondnetwork/dapp-core";
+import PurpleTelegram from "components/icons/PurpleTelegram";
+import Telegram from "components/icons/Telegram";
+import PurpleWhitelist from "components/icons/PurpleWhitelist";
+import Whitelist from "components/icons/Whitelist";
+import WalletsDropdown from "components/dropdown/WalletsDropdown";
+import Unlock from "components/icons/Unlock";
 
 const variants = {
 	hidden: {
@@ -29,8 +35,6 @@ const textVariants = {
 	},
 };
 
-const { ExtensionLoginButton, WebWalletLoginButton, LedgerLoginButton, WalletConnectLoginButton } = DappUI;
-
 const Round1 = () => {
 	const { isLoggedIn, ...rest } = useGetLoginInfo();
 
@@ -49,30 +53,32 @@ const Round1 = () => {
 				<h1>
 					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE SOON
 				</h1>
-				<p>Round 2 presale starts on 15 March 2022 18:00 GMT +02:00</p>
+				<p>Round 2 presale starts on 15 March 2022 20:00 GMT +02:00</p>
 			</motion.div>
-			{!isLoggedIn && (
-				<div className="flex gap-5">
-					<ExtensionLoginButton callbackRoute="/" loginButtonText={"Extension"} />
-					<WebWalletLoginButton callbackRoute="/" loginButtonText={"Web wallet"} />
-					<LedgerLoginButton loginButtonText={"Ledger"} callbackRoute="/" className={"test-class_name"} />
-					<WalletConnectLoginButton callbackRoute="/" loginButtonText={"Maiar"} />
-				</div>
-			)}
-			{isLoggedIn && (
-				<Button className="filled w-[18.75rem]" containerClassname="mt-5 mb-8" disabled animate>
-					Switch Wallet
+			<div className="flex flex-col items-center md:flex-row gap-5 md:gap-10 mt-5 mb-8">
+				{!isLoggedIn && <WalletsDropdown />}
+				{isLoggedIn && (
+					<Button className="filled w-[18.75rem]" animate>
+						<Unlock />
+						Disconnect
+					</Button>
+				)}
+				<Button
+					className="outline w-[18.75rem]"
+					external="https://docs.google.com/forms/d/e/1FAIpQLSfo4h-Ou7uu1EKsv8b930xo9xWmk85L5s8UMAF-dE1kMlQMJQ/viewform"
+					animate>
+					<PurpleWhitelist /> Join Whitelist
 				</Button>
-			)}
+			</div>
 			<div className="flex flex-col gap-10 md:gap-32 md:flex-row">
 				<InfoCard
 					day={15}
 					month="Mar"
 					title="Round 2 - Presale Soon"
 					details={[
-						"Price per token: 0.0002 $EGLD",
-						"Tokens supply: 2.500.000 $LAND (2.5%)",
-						"Whitelisted addresses: 500",
+						"Price per token: 0.0003 $EGLD",
+						"Tokens supply: 7.500.000 $LAND (7.5%)",
+						"Whitelisted addresses: 2250",
 					]}
 					totalSold={0}
 					percentage={0}

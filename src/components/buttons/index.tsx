@@ -1,7 +1,7 @@
 import { motion } from "framer-motion/dist/framer-motion";
 import { Fragment } from "react";
 
-const ButtonContent = ({ disabled, link, className, type, children, external, ...rest }: any) => {
+const ButtonContent = ({ disabled, link, className, type, children, external, hideComingSoon, ...rest }: any) => {
 	if (external) {
 		return (
 			<a href={external} className={`btn ${className}`}>
@@ -15,7 +15,7 @@ const ButtonContent = ({ disabled, link, className, type, children, external, ..
 			<button className={`btn ${className}`} type={type} disabled={disabled} {...rest}>
 				{children}
 			</button>
-			{disabled && (
+			{disabled && !hideComingSoon && (
 				<div className="absolute p-2 text-xs rounded -right-2 z-100 bg-purple md:-right-6 -top-5">Coming Soon</div>
 			)}
 		</Fragment>
