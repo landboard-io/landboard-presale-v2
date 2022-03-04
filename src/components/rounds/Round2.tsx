@@ -64,7 +64,7 @@ const Round1 = () => {
 					month="Mar"
 					title="Round 2 - Presale Soon"
 					details={[
-						"Price per token: 0.0002 $EGLD",
+						"Price per token: 0.0003 $EGLD",
 						"Tokens supply: 7.500.000 $LAND (7.5%)",
 						"Whitelisted addresses: 2250",
 					]}
