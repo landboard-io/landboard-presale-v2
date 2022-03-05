@@ -2,7 +2,8 @@ import { getAccountBalance, useGetAccountInfo } from "@elrondnetwork/dapp-core";
 import Button from "components/buttons";
 import Input from "components/input";
 import { motion } from "framer-motion/dist/framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import whitelistedAddresses from "./data.json";
 
 const variants = {
 	hidden: {
@@ -23,6 +24,9 @@ const BuyCard = () => {
 	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldAmount, setEgldAmount] = useState("0");
 	const [landAmount, setLandAmount] = useState("0");
+	const isWhitelisted = useMemo(() => whitelistedAddresses.data.some((waddress: any) => waddress.address === address), [
+		address,
+	]);
 
 	const handleChangeEgldAmount = (e: any) => {
 		setEgldAmount(e.target.value);
@@ -50,11 +54,12 @@ const BuyCard = () => {
 			<form className="flex flex-col gap-5 text-left">
 				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
 				<Input label="YOU PAY" tag="EGLD" type="number" value={egldAmount} onChange={handleChangeEgldAmount} />
+				{!isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are not whitelisted ☹</span>}
 				<Button
 					className="filled w-[16.875rem]"
 					containerClassname="mt-5"
 					type="submit"
-					disabled={disabled}
+					disabled={disabled && isWhitelisted}
 					hideComingSoon>
 					BUY $LAND
 				</Button>

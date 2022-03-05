@@ -2,6 +2,7 @@ import { motion } from "framer-motion/dist/framer-motion";
 import Earth from "components/icons/Earth";
 import Tag from "components/icons/Tag";
 import User from "components/icons/User";
+import ProgressBar from "components/progressbar";
 
 const variants = {
 	hidden: {
@@ -35,17 +36,13 @@ const InfoCard = ({ day, month, title, details, totalSold, percentage }: InfoCar
 			<h2 className="w-[14rem] mt-8">{title}</h2>
 			<ul className="flex flex-col gap-5 mt-10 font-medium">
 				{details.map((detail, index) => (
-					<li key={index} className="flex gap-2 items-center">
+					<li key={index} className="flex items-center gap-2">
 						{Icons[index]}
 						{detail}
 					</li>
 				))}
 			</ul>
-			<div className="relative grid w-full h-10 mt-10 md:mt-auto place-content-center bg-purple">
-				<p className="font-bold">
-					{totalSold} tokens sold out ({percentage}%)
-				</p>
-			</div>
+			<ProgressBar text={`${totalSold} tokens sold out (${percentage}%)`} percentage={percentage} />
 		</motion.div>
 	);
 };
