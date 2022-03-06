@@ -18,7 +18,7 @@ const cardVariants = {
 };
 
 const CountDown = () => {
-	const timeUntilLaunchDate = dayjs(launchDate).diff(dayjs());
+	const timeUntilLaunchDate = dayjs(launchDate).diff(dayjs().add(1, "day"));
 	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
 
 	const onFocus = () => {
