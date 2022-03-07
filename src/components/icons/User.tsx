@@ -13,9 +13,9 @@ const User = () => {
 					x2="16.5525"
 					y2="28.5429"
 					gradientUnits="userSpaceOnUse">
-					<stop stop-color="#8E2DE2" />
-					<stop offset="1" stop-color="#4A00E0" />
-					<stop offset="1" stop-color="#4A00E0" />
+					<stop stopColor="#8E2DE2" />
+					<stop offset="1" stopColor="#4A00E0" />
+					<stop offset="1" stopColor="#4A00E0" />
 				</linearGradient>
 			</defs>
 		</svg>

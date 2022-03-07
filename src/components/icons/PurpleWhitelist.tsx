@@ -13,9 +13,9 @@ const PurpleWhitelist = () => {
 					x2="13.319"
 					y2="30.432"
 					gradientUnits="userSpaceOnUse">
-					<stop stop-color="#8E2DE2" />
-					<stop offset="1" stop-color="#4A00E0" />
-					<stop offset="1" stop-color="#4A00E0" />
+					<stop stopColor="#8E2DE2" />
+					<stop offset="1" stopColor="#4A00E0" />
+					<stop offset="1" stopColor="#4A00E0" />
 				</linearGradient>
 			</defs>
 		</svg>

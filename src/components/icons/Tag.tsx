@@ -17,9 +17,9 @@ const Tag = () => {
 					x2="16.1709"
 					y2="29.7256"
 					gradientUnits="userSpaceOnUse">
-					<stop stop-color="#8E2DE2" />
-					<stop offset="1" stop-color="#4A00E0" />
-					<stop offset="1" stop-color="#4A00E0" />
+					<stop stopColor="#8E2DE2" />
+					<stop offset="1" stopColor="#4A00E0" />
+					<stop offset="1" stopColor="#4A00E0" />
 				</linearGradient>
 				<linearGradient
 					id="paint1_linear_197_3496"
@@ -28,9 +28,9 @@ const Tag = () => {
 					x2="10.5842"
 					y2="12.4899"
 					gradientUnits="userSpaceOnUse">
-					<stop stop-color="#8E2DE2" />
-					<stop offset="1" stop-color="#4A00E0" />
-					<stop offset="1" stop-color="#4A00E0" />
+					<stop stopColor="#8E2DE2" />
+					<stop offset="1" stopColor="#4A00E0" />
+					<stop offset="1" stopColor="#4A00E0" />
 				</linearGradient>
 			</defs>
 		</svg>

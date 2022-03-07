@@ -37,7 +37,8 @@ p {
 	@apply text-lg font-medium leading-8;
 }
 
-h1 {
+h1,
+.unlock-page_title {
 	@apply text-3xl leading-[3rem] text-center md:text-left md:text-6xl font-bold md:leading-[5rem];
 }
 
@@ -57,13 +58,16 @@ h2 {
 .btn.round.active {
 	@apply bg-purple;
 }
-.btn.filled {
+.btn.filled,
+.btn-primary {
 	@apply text-white;
 	background-image: linear-gradient(120deg, #8e2de2 0%, #4a00e0 99%);
 	background-size: 200% auto;
 	transition: 0.5s;
+	border: none !important;
 }
-.btn.filled:hover {
+.btn.filled:hover,
+.btn-primary:hover {
 	background-position: bottom right;
 }
 .btn.filled:disabled {
@@ -76,7 +80,7 @@ h2 {
 }
 
 .account-button__address {
-	@apply relative bg-purple-darkest  rounded grid place-content-center h-12 px-5 py-4;
+	@apply relative grid h-12 px-5 py-4 rounded bg-purple-darkest place-content-center;
 }
 
 .account-button__tag {
@@ -105,13 +109,6 @@ hr {
 .wallets-dropdown {
 	@apply absolute top-12 right-0 z-[100] bg-purple-darker flex flex-col gap-5 rounded-b w-full;
 	box-shadow: 0px 1px 2px 0px #0000000d;
-}
-
-.dapp-core-ui-component {
-	@apply py-2.5;
-}
-.dapp-core-ui-component:hover {
-	@apply cursor-pointer transition-colors duration-300 bg-purple-darkest;
 }
 
 /* CARD */
@@ -149,4 +146,66 @@ body::-webkit-scrollbar-thumb:hover {
 }
 ::selection {
 	@apply text-white bg-purple;
+}
+
+/* DAPP UI OVERRIDES */
+.unlock-page_card,
+.modal-card,
+.card {
+	@apply p-5 rounded;
+	background: #14073b !important;
+}
+.unlock-page_cardBody {
+	@apply flex flex-col items-center justify-center w-full;
+}
+.dapp-core-ui-component,
+.btn-primary {
+	@apply w-full mb-2;
+}
+.modal-container {
+	@apply grid px-5 place-content-center;
+}
+.modal-content {
+	@apply grid place-content-center;
+}
+.card-title {
+	@apply w-full;
+}
+.card-title > div {
+	@apply flex items-center justify-between w-full;
+}
+.unlock-page_cardContainer {
+	@apply grid place-content-center;
+}
+.modal-card {
+	@apply py-0;
+}
+.wallect-connect-login_title {
+	@apply my-4;
+}
+.unlock-page_description {
+	@apply mb-5;
+}
+.wallect-connect-login,
+.ledger-login {
+	@apply absolute z-[1000] top-40;
+}
+.card-body {
+	@apply flex flex-col items-center justify-center w-full gap-4;
+}
+.justify-content-center {
+	@apply mb-5;
+}
+.wallect-connect-login_leadText {
+	@apply hidden;
+}
+.wallect-connect-login_mobileLoginButton {
+	display: grid !important;
+}
+.wallect-connect-login_mobileLoginButton > svg {
+	@apply hidden;
+}
+
+.modal-backdrop.show {
+	@apply absolute top-0 left-0 w-screen h-screen transition-colors duration-300 bg-purple bg-opacity-40 z-[100];
 }

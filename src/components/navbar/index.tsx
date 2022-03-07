@@ -22,7 +22,7 @@ const NavBar = () => {
 				<a className="cursor-pointer" href="https://landboard.io/">
 					<Logo />
 				</a>
-				<div className="md:ml-auto flex gap-5 md:gap-10 justify-center items-center">
+				<div className="flex items-center justify-center gap-5 md:ml-auto md:gap-10">
 					<motion.a variants={scaleInVariants} href="https://twitter.com/landboard_io" className="uppercase">
 						<Twitter />
 					</motion.a>

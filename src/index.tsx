@@ -1,5 +1,5 @@
-import "./shared/tailwind.css";
 import "./shared/fonts.css";
+import "./shared/tailwind.css";
 
 import React from "react";
 import ReactDOM from "react-dom";

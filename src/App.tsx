@@ -1,34 +1,44 @@
-import Presale from "components/rounds/Presale";
 import NavBar from "./components/navbar";
-import Particles from "react-tsparticles";
-import particlesConfig from "./particlesConfig.json";
 import { Fragment } from "react";
 import { DappUI, DappProvider } from "@elrondnetwork/dapp-core";
+import { routeNames } from "routes";
+import routes from "routes";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import NotFound from "pages/404";
 
-const environment = "devnet";
+const environment = "mainnet";
 
-const { TransactionsToastList, SignTransactionsModals, NotificationModal } = DappUI;
+const {
+	TransactionsToastList,
+	SignTransactionsModals,
+	NotificationModal,
+	DappCorePages: { UnlockPage },
+} = DappUI;
 
 const App = () => {
 	return (
-		<DappProvider
-			environment={environment}
-			customNetworkConfig={{ name: "customConfig", apiTimeout: 6000 }}
-			completedTransactionsDelay={200}>
-			<Fragment>
-				<TransactionsToastList />
-				<NotificationModal />
-				<SignTransactionsModals className="custom-class-for-modals" />
-				<NavBar />
-				<main className="container">
-					<Presale />
-					<div className="top-0 bottom-0 z-0 h-screen" style={{ position: "absolute" }}>
-						{/* @ts-ignore */}
-						<Particles id="tsparticles" options={particlesConfig} height="100vh" />
-					</div>
-				</main>
-			</Fragment>
-		</DappProvider>
+		<Router>
+			<DappProvider
+				environment={environment}
+				customNetworkConfig={{ name: "customConfig", apiTimeout: 6000 }}
+				completedTransactionsDelay={200}>
+				<Fragment>
+					<NavBar />
+					<main className="container">
+						<TransactionsToastList />
+						<NotificationModal />
+						<SignTransactionsModals className="custom-class-for-modals" />
+						<Routes>
+							<Route path={routeNames.unlock} element={<UnlockPage loginRoute={routeNames.presale} />} />
+							{routes.map((route: any, index: number) => (
+								<Route path={route.path} key={"route-key-" + index} element={<route.component />} />
+							))}
+							<Route path="*" element={<NotFound />} />
+						</Routes>
+					</main>
+				</Fragment>
+			</DappProvider>
+		</Router>
 	);
 };
 

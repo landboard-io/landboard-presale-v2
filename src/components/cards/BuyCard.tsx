@@ -41,7 +41,6 @@ const BuyCard = () => {
 	useEffect(() => {
 		if (address)
 			getAccountBalance(address).then((balance) => {
-				console.log("balance", balance);
 				setTotalEgldBalance(balance);
 			});
 	}, [address]);
@@ -59,7 +58,7 @@ const BuyCard = () => {
 					className="filled w-[16.875rem]"
 					containerClassname="mt-5"
 					type="submit"
-					disabled={disabled && isWhitelisted}
+					disabled={disabled && !isWhitelisted}
 					hideComingSoon>
 					BUY $LAND
 				</Button>
