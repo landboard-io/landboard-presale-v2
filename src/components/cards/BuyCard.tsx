@@ -1,6 +1,8 @@
-import { getAccountBalance, useGetAccountInfo } from "@elrondnetwork/dapp-core";
+import { getAccountBalance, refreshAccount, sendTransactions, useGetAccountInfo } from "@elrondnetwork/dapp-core";
+import { Balance } from "@elrondnetwork/erdjs/out";
 import Button from "components/buttons";
 import Input from "components/input";
+import { contractAddress } from "config";
 import { motion } from "framer-motion/dist/framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import whitelistedAddresses from "./data.json";
@@ -38,6 +40,19 @@ const BuyCard = () => {
 		setEgldAmount((e.target.value * conversionRate).toFixed(4));
 	};
 
+	const buyToken = async (e: any) => {
+		e.preventDefault();
+		const tx = {
+			value: Balance.egld(landAmount),
+			data: "buy",
+			receiver: contractAddress,
+		};
+		await refreshAccount();
+		await sendTransactions({
+			transactions: tx,
+		});
+	};
+
 	useEffect(() => {
 		if (address)
 			getAccountBalance(address).then((balance) => {
@@ -50,7 +65,7 @@ const BuyCard = () => {
 	return (
 		<motion.div variants={variants} className="pb-10 card">
 			<h2 className="mb-10">Buy LAND Token</h2>
-			<form className="flex flex-col gap-5 text-left">
+			<form className="flex flex-col gap-5 text-left" onSubmit={buyToken}>
 				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
 				<Input label="YOU PAY" tag="EGLD" type="number" value={egldAmount} onChange={handleChangeEgldAmount} />
 				{!isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are not whitelisted ☹</span>}
@@ -58,7 +73,7 @@ const BuyCard = () => {
 					className="filled w-[16.875rem]"
 					containerClassname="mt-5"
 					type="submit"
-					disabled={disabled && !isWhitelisted}
+					disabled={disabled || !isWhitelisted}
 					hideComingSoon>
 					BUY $LAND
 				</Button>

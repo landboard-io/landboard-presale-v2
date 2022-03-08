@@ -1,4 +1,5 @@
 import { logout, useGetAccountInfo, useGetLoginInfo } from "@elrondnetwork/dapp-core";
+import axios from "axios";
 import Maiar from "components/icons/Maiar";
 import Unlock from "components/icons/Unlock";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
@@ -34,19 +35,13 @@ const AddressButton = () => {
 
 	useEffect(() => {
 		if (account.address != "") {
-			fetch(`https://api.elrond.com/accounts/${account.address}tokens`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			})
-				.then((res) => res.json())
-				.then((res: any) => {
-					if (res.data?.length > 0)
-						setTotalLandBalance(res.data.filter((a: any) => a.identifier === "LAND-40f26f")[0].balance / 10 ** 18);
-				});
+			axios.get(`https://api.elrond.com/accounts/${account.address}tokens`).then((res: any) => {
+				console.log("res", res);
+				if (res.data?.length > 0)
+					setTotalLandBalance(res.data.filter((a: any) => a.identifier === "LAND-40f26f")[0].balance / 10 ** 18);
+			});
 		}
-	}, []);
+	}, [account]);
 
 	return (
 		<div className="flex">
