@@ -28,8 +28,12 @@ const launchDate = "2022-03-15 18:00:00";
 const BuyCard = () => {
 	const { address, ...rest } = useGetAccountInfo();
 
-	const timeUntilLaunchDate = dayjs(launchDate).diff(dayjs());
-	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
+	const timeUntilPresaleDate = dayjs(launchDate).diff(dayjs());
+	const timeUntilWhitelistDate = dayjs(launchDate)
+		.subtract(1, "days")
+		.diff(dayjs());
+
+	const [timeLeft, { start, pause }] = useCountDown(timeUntilPresaleDate, interval);
 
 	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldPrice, setEgldPrice] = useState(0);
@@ -76,7 +80,8 @@ const BuyCard = () => {
 			});
 	}, [address]);
 
-	const disabled = egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount || timeLeft > 0;
+	const disabled =
+		egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount || timeLeft > 0 || !isWhitelisted;
 
 	return (
 		<motion.div variants={variants} className="pb-10 card">
@@ -98,9 +103,7 @@ const BuyCard = () => {
 					hideComingSoon>
 					BUY $LAND
 				</Button>
-				<span className="text-xs font-bold">
-					1 EGLD= ${egldPrice} | 1 EGLD = {(egldPrice / conversionRate).toFixed(2)} LAND
-				</span>
+				<span className="text-xs font-bold">1 EGLD= ${egldPrice} | 1 EGLD = 3333 LAND</span>
 			</form>
 		</motion.div>
 	);
