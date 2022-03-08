@@ -79,7 +79,11 @@ const BuyCard = () => {
 			<form className="flex flex-col gap-5 text-left" onSubmit={buyToken}>
 				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
 				<Input label="YOU PAY" tag="EGLD" type="number" value={egldAmount} onChange={handleChangeEgldAmount} />
-				{!isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are not whitelisted ☹</span>}
+				{!isWhitelisted && (
+					<span className="-mb-8 text-sm font-bold text-purple">
+						You are not whitelisted or the list is not updated
+					</span>
+				)}
 				<Button
 					className="filled w-[16.875rem]"
 					containerClassname="mt-5"

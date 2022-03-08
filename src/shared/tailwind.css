@@ -130,7 +130,7 @@ hr {
 }
 /* CONTAINER OVERRIDE */
 .container {
-	@apply px-5 pt-5 pb-20 md:pb-40 max-w-none md:py-8 md:px-[7.5rem] flex flex-col gap-5 z-[100] relative;
+	@apply px-5 -mt-5 pb-20 md:pb-40 max-w-none md:py-8 md:mt-[-4rem] md:px-[7.5rem] flex flex-col gap-5 z-[100] relative;
 }
 
 /* SCROLLBAR */
