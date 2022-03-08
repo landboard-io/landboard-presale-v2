@@ -84,7 +84,11 @@ h2 {
 }
 
 .account-button__tag {
-	@apply absolute -top-5 left-10 px-3 py-1.5 text-sm bg-purple mx-auto font-bold rounded text-white grid place-content-center;
+	@apply px-3 py-1.5 text-sm bg-purple mx-auto font-bold rounded text-white grid place-content-center;
+}
+
+.account-button__tag-container {
+	@apply absolute bottom-10 w-full px-2;
 }
 
 hr {

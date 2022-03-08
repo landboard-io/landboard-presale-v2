@@ -58,7 +58,9 @@ const AddressButton = () => {
 							<span className="font-bold text-purple">
 								{address.slice(0, 6)}...{address.slice(-4)}
 							</span>
-							<span className="account-button__tag">{totalLandBalance} LAND</span>
+							<div className="account-button__tag-container">
+								<span className="account-button__tag">{totalLandBalance} LAND</span>
+							</div>
 						</motion.div>
 						<Button className="filled w-[8.75rem]" onClick={handleLogout} animate>
 							<Unlock />
