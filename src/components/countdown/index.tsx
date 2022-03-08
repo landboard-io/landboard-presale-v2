@@ -2,9 +2,7 @@ import dayjs from "dayjs";
 import React, { Fragment, useEffect } from "react";
 import useCountDown from "react-countdown-hook";
 import { motion } from "framer-motion/dist/framer-motion";
-
-const launchDate = "2022-03-15 18:00:00";
-const interval = 1000;
+import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
 
 const cardVariants = {
 	hidden: {
@@ -18,28 +16,7 @@ const cardVariants = {
 };
 
 const CountDown = () => {
-	const timeUntilLaunchDate = dayjs(launchDate).diff(dayjs().add(1, "day"));
-	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
-
-	const onFocus = () => {
-		start();
-	};
-
-	const onBlur = () => {
-		pause();
-	};
-
-	useEffect(() => {
-		window.addEventListener("focus", onFocus);
-		window.addEventListener("blur", onBlur);
-
-		onFocus();
-
-		return () => {
-			window.removeEventListener("focus", onFocus);
-			window.removeEventListener("blur", onBlur);
-		};
-	}, []);
+	const timeLeft = useTimeUntilLaunch();
 
 	const days = dayjs(timeLeft).format("D");
 	const hours = dayjs(timeLeft).format("HH");

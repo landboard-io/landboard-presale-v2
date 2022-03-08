@@ -6,6 +6,7 @@ import Input from "components/input";
 import { contractAddress } from "config";
 import dayjs from "dayjs";
 import { motion } from "framer-motion/dist/framer-motion";
+import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
 import { useEffect, useMemo, useState } from "react";
 import useCountDown from "react-countdown-hook";
 import whitelistedAddresses from "./data.json";
@@ -22,18 +23,11 @@ const variants = {
 };
 
 const conversionRate = 0.0003;
-const interval = 1000;
-const launchDate = "2022-03-15 18:00:00";
 
 const BuyCard = () => {
 	const { address, ...rest } = useGetAccountInfo();
 
-	const timeUntilPresaleDate = dayjs(launchDate).diff(dayjs());
-	const timeUntilWhitelistDate = dayjs(launchDate)
-		.subtract(1, "days")
-		.diff(dayjs());
-
-	const [timeLeft, { start, pause }] = useCountDown(timeUntilPresaleDate, interval);
+	const timeLeft = useTimeUntilLaunch();
 
 	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldPrice, setEgldPrice] = useState(0);
@@ -67,7 +61,6 @@ const BuyCard = () => {
 	};
 
 	useEffect(() => {
-		start();
 		axios.get("https://api.elrond.com/economics").then((res: any) => {
 			setEgldPrice(res.data.price);
 		});
@@ -96,7 +89,7 @@ const BuyCard = () => {
 				)}
 				{isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are whitelisted!</span>}
 				<Button
-					className="filled w-[16.875rem]"
+					className="w-full filled"
 					containerClassname="mt-5"
 					type="submit"
 					disabled={disabled || !isWhitelisted}
