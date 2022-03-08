@@ -1,5 +1,6 @@
 import { getAccountBalance, refreshAccount, sendTransactions, useGetAccountInfo } from "@elrondnetwork/dapp-core";
 import { Balance } from "@elrondnetwork/erdjs/out";
+import axios from "axios";
 import Button from "components/buttons";
 import Input from "components/input";
 import { contractAddress } from "config";
@@ -31,6 +32,7 @@ const BuyCard = () => {
 	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
 
 	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
+	const [egldPrice, setEgldPrice] = useState(0);
 	const [egldAmount, setEgldAmount] = useState("0");
 	const [landAmount, setLandAmount] = useState("0");
 	const isWhitelisted = useMemo(() => whitelistedAddresses.data.some((waddress: any) => waddress.address === address), [
@@ -62,6 +64,9 @@ const BuyCard = () => {
 
 	useEffect(() => {
 		start();
+		axios.get("https://api.elrond.com/economics").then((res: any) => {
+			setEgldPrice(res.data.price);
+		});
 	}, []);
 
 	useEffect(() => {
@@ -93,7 +98,9 @@ const BuyCard = () => {
 					hideComingSoon>
 					BUY $LAND
 				</Button>
-				<span className="text-xs font-bold">1 EGLD= $133 | 1 EGLD = 443333 LAND</span>
+				<span className="text-xs font-bold">
+					1 EGLD= ${egldPrice} | 1 EGLD = {(egldPrice / conversionRate).toFixed(2)} LAND
+				</span>
 			</form>
 		</motion.div>
 	);
