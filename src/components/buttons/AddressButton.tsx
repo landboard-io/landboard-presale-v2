@@ -35,7 +35,7 @@ const AddressButton = () => {
 
 	useEffect(() => {
 		if (account.address != "") {
-			axios.get(`https://api.elrond.com/accounts/${account.address}tokens`).then((res: any) => {
+			axios.get(`https://api.elrond.com/accounts/${account.address}/tokens`).then((res: any) => {
 				console.log("res", res);
 				if (res.data?.length > 0)
 					setTotalLandBalance(res.data.filter((a: any) => a.identifier === "LAND-40f26f")[0].balance / 10 ** 18);
