@@ -3,8 +3,10 @@ import { Balance } from "@elrondnetwork/erdjs/out";
 import Button from "components/buttons";
 import Input from "components/input";
 import { contractAddress } from "config";
+import dayjs from "dayjs";
 import { motion } from "framer-motion/dist/framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import useCountDown from "react-countdown-hook";
 import whitelistedAddresses from "./data.json";
 
 const variants = {
@@ -19,9 +21,14 @@ const variants = {
 };
 
 const conversionRate = 0.0003;
+const interval = 1000;
+const launchDate = "2022-03-15 18:00:00";
 
 const BuyCard = () => {
 	const { address, ...rest } = useGetAccountInfo();
+
+	const timeUntilLaunchDate = dayjs(launchDate).diff(dayjs());
+	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
 
 	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldAmount, setEgldAmount] = useState("0");
@@ -54,13 +61,17 @@ const BuyCard = () => {
 	};
 
 	useEffect(() => {
+		start();
+	}, []);
+
+	useEffect(() => {
 		if (address)
 			getAccountBalance(address).then((balance) => {
 				setTotalEgldBalance(balance);
 			});
 	}, [address]);
 
-	const disabled = egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount;
+	const disabled = egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount || timeLeft > 0;
 
 	return (
 		<motion.div variants={variants} className="pb-10 card">
