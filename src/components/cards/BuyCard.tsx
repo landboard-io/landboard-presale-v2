@@ -81,9 +81,10 @@ const BuyCard = () => {
 				<Input label="YOU PAY" tag="EGLD" type="number" value={egldAmount} onChange={handleChangeEgldAmount} />
 				{!isWhitelisted && (
 					<span className="-mb-8 text-sm font-bold text-purple">
-						You are not whitelisted or the list is not updated
+						You are not whitelisted. The list updates periodically.
 					</span>
 				)}
+				{isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are whitelisted!</span>}
 				<Button
 					className="filled w-[16.875rem]"
 					containerClassname="mt-5"
