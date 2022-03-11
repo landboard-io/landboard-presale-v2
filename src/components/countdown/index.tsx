@@ -1,8 +1,10 @@
 import dayjs from "dayjs";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useMemo } from "react";
 import useCountDown from "react-countdown-hook";
 import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
+import { useGetAccountInfo } from "@elrondnetwork/dapp-core";
+import whitelistedAddresses from "components/cards/data.json";
 
 const cardVariants = {
 	hidden: {
@@ -16,7 +18,13 @@ const cardVariants = {
 };
 
 const CountDown = () => {
-	const timeLeft = useTimeUntilLaunch();
+	const { address, ...rest } = useGetAccountInfo();
+
+	const isWhitelisted = useMemo(
+		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
+		[address]
+	);
+	const timeLeft = useTimeUntilLaunch(isWhitelisted);
 
 	const days = dayjs(timeLeft).format("D");
 	const hours = dayjs(timeLeft).format("HH");

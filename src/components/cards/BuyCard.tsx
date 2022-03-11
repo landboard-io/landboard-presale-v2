@@ -24,27 +24,42 @@ const variants = {
 
 const conversionRate = 0.0003;
 
+const LabelButton = (props: any) => (
+	<button
+		type="button"
+		className="text-sm uppercase bg-purple-darker rounded flex px-2 py-1 font-bold text-purple"
+		{...props}>
+		Max
+	</button>
+);
+
 const BuyCard = () => {
-	const { address, ...rest } = useGetAccountInfo();
+	const { address, account, ...rest } = useGetAccountInfo();
 
-	const timeLeft = useTimeUntilLaunch();
-
+	const [totalLandBalance, setTotalLandBalance] = useState(0);
 	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldPrice, setEgldPrice] = useState(0);
 	const [egldAmount, setEgldAmount] = useState("0");
 	const [landAmount, setLandAmount] = useState("0");
-	const isWhitelisted = useMemo(() => whitelistedAddresses.data.some((waddress: any) => waddress.address === address), [
-		address,
-	]);
+	const isWhitelisted = useMemo(
+		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
+		[address]
+	);
+
+	const timeLeft = useTimeUntilLaunch(isWhitelisted);
 
 	const handleChangeEgldAmount = (e: any) => {
-		setEgldAmount(e.target.value);
-		setLandAmount((e.target.value / conversionRate).toFixed(4));
+		if (e.target.value <= 1) {
+			setEgldAmount(e.target.value);
+			setLandAmount((e.target.value / conversionRate).toFixed(4));
+		}
 	};
 
 	const handleChangeLandAmount = (e: any) => {
-		setLandAmount(e.target.value);
-		setEgldAmount((e.target.value * conversionRate).toFixed(4));
+		if (e.target.value <= 3333.3333) {
+			setLandAmount(e.target.value);
+			setEgldAmount((e.target.value * conversionRate).toFixed(4));
+		}
 	};
 
 	const buyToken = async (e: any) => {
@@ -67,6 +82,15 @@ const BuyCard = () => {
 	}, []);
 
 	useEffect(() => {
+		if (account.address != "") {
+			axios.get(`https://api.elrond.com/accounts/${account.address}/tokens`).then((res: any) => {
+				if (res.data?.length > 0)
+					setTotalLandBalance(res.data.filter((a: any) => a.identifier === "LAND-40f26f")[0].balance / 10 ** 18);
+			});
+		}
+	}, [account]);
+
+	useEffect(() => {
 		if (address)
 			getAccountBalance(address).then((balance) => {
 				setTotalEgldBalance(balance);
@@ -81,7 +105,23 @@ const BuyCard = () => {
 			<h2 className="mb-10">Buy LAND Token</h2>
 			<form className="flex flex-col gap-5 text-left" onSubmit={buyToken}>
 				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
-				<Input label="YOU PAY" tag="EGLD" type="number" value={egldAmount} onChange={handleChangeEgldAmount} />
+				<span className="tiny-label">You have {totalLandBalance} LAND</span>
+				<Input
+					label="YOU PAY"
+					tag="EGLD"
+					type="number"
+					value={egldAmount}
+					onChange={handleChangeEgldAmount}
+					LabelButton={
+						<LabelButton
+							onClick={() =>
+								handleChangeEgldAmount({ target: { value: parseInt(totalEgldBalance) < 1 ? totalEgldBalance : 1 } })
+							}
+						/>
+					}
+				/>
+				<span className="tiny-label">You have {totalEgldBalance} EGLD</span>
+
 				{!isWhitelisted && (
 					<span className="-mb-8 text-sm font-bold text-purple">
 						You are not whitelisted. The list updates periodically.

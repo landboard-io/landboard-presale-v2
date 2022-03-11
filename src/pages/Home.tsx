@@ -9,7 +9,7 @@ const Home = () => {
 			<Presale />
 			<div className="top-0 bottom-0 z-0 h-screen" style={{ position: "absolute" }}>
 				{/* @ts-ignore */}
-				<Particles id="tsparticles" options={particlesConfig} height="100vh" />
+				{/* <Particles id="tsparticles" options={particlesConfig} height="100vh" /> */}
 			</div>
 		</Fragment>
 	);

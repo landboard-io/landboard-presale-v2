@@ -6,12 +6,14 @@ const interval = 1000;
 const whitelistDate = process.env.REACT_APP_WHITELIST_DATE;
 const presaleDate = process.env.REACT_APP_PRESALE_DATE;
 
-const useTimeUntilLaunch = () => {
+const useTimeUntilLaunch = (isWhitelisted?: boolean) => {
 	let timeUntilLaunchDate;
-	if (dayjs().isBefore(dayjs(whitelistDate))) {
+	if (isWhitelisted) {
 		timeUntilLaunchDate = dayjs(whitelistDate).diff(dayjs());
 	} else {
-		timeUntilLaunchDate = dayjs(presaleDate).diff(dayjs());
+		timeUntilLaunchDate = dayjs(presaleDate)
+			.subtract(1, "day")
+			.diff(dayjs());
 	}
 
 	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);

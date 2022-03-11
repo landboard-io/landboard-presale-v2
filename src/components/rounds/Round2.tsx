@@ -1,9 +1,12 @@
+import { useGetAccountInfo } from "@elrondnetwork/dapp-core";
+import axios from "axios";
 import Button from "components/buttons";
 import BuyCard from "components/cards/BuyCard";
 import InfoCard from "components/cards/InfoCard";
 import CountDown from "components/countdown";
 import PurpleWhitelist from "components/icons/PurpleWhitelist";
 import { motion } from "framer-motion/dist/framer-motion";
+import { useEffect, useState } from "react";
 
 const variants = {
 	hidden: {

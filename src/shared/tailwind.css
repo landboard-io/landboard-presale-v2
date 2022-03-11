@@ -167,7 +167,7 @@ body::-webkit-scrollbar-thumb:hover {
 	@apply w-full mb-2;
 }
 .modal-container {
-	@apply grid px-5 place-content-center;
+	@apply grid px-5 place-content-center h-full;
 }
 .modal-content {
 	@apply grid place-content-center;
@@ -209,7 +209,18 @@ body::-webkit-scrollbar-thumb:hover {
 .wallect-connect-login_mobileLoginButton > svg {
 	@apply hidden;
 }
-
+.modal-container {
+	@apply absolute top-0 left-0 w-screen h-screen z-[1000];
+}
 .modal-backdrop.show {
 	@apply absolute top-0 left-0 w-screen h-screen transition-colors duration-300 bg-purple bg-opacity-40 z-[100];
+}
+.modal-dialog {
+	@apply mt-40;
+}
+.page-state_wrapper {
+	@apply flex flex-col items-center justify-center w-full gap-5;
+}
+.tiny-label {
+	@apply mt-[-12px] text-sm font-bold text-purple;
 }
