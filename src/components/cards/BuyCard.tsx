@@ -27,7 +27,7 @@ const conversionRate = 0.0003;
 const LabelButton = (props: any) => (
 	<button
 		type="button"
-		className="text-sm uppercase bg-purple-darker rounded flex px-2 py-1 font-bold text-purple"
+		className="flex px-2 py-1 text-sm font-bold uppercase rounded bg-purple-darker text-purple"
 		{...props}>
 		Max
 	</button>
@@ -120,7 +120,7 @@ const BuyCard = () => {
 						/>
 					}
 				/>
-				{address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>}
+				{/* {address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>} */}
 
 				{!isWhitelisted && (
 					<span className="-mb-8 text-sm font-bold text-purple">
