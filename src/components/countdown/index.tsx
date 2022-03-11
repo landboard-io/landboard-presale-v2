@@ -24,6 +24,7 @@ const CountDown = () => {
 		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
 		[address]
 	);
+	console.log("isWhitelisted", isWhitelisted);
 	const timeLeft = useTimeUntilLaunch(isWhitelisted);
 
 	const days = dayjs(timeLeft).format("D");

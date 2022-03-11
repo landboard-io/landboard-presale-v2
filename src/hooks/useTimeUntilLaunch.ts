@@ -9,7 +9,9 @@ const presaleDate = process.env.REACT_APP_PRESALE_DATE;
 const useTimeUntilLaunch = (isWhitelisted?: boolean) => {
 	let timeUntilLaunchDate;
 	if (isWhitelisted) {
-		timeUntilLaunchDate = dayjs(whitelistDate).diff(dayjs());
+		timeUntilLaunchDate = dayjs(whitelistDate)
+			.subtract(1, "day")
+			.diff(dayjs());
 	} else {
 		timeUntilLaunchDate = dayjs(presaleDate)
 			.subtract(1, "day")
