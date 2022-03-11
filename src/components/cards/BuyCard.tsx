@@ -105,7 +105,7 @@ const BuyCard = () => {
 			<h2 className="mb-10">Buy LAND Token</h2>
 			<form className="flex flex-col gap-5 text-left" onSubmit={buyToken}>
 				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
-				<span className="tiny-label">You have {totalLandBalance} LAND</span>
+				{address && <span className="tiny-label">You have {totalLandBalance} LAND</span>}
 				<Input
 					label="YOU PAY"
 					tag="EGLD"
@@ -120,7 +120,7 @@ const BuyCard = () => {
 						/>
 					}
 				/>
-				<span className="tiny-label">You have {totalEgldBalance} EGLD</span>
+				{address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>}
 
 				{!isWhitelisted && (
 					<span className="-mb-8 text-sm font-bold text-purple">
