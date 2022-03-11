@@ -1,4 +1,11 @@
-import { getAccountBalance, refreshAccount, sendTransactions, useGetAccountInfo } from "@elrondnetwork/dapp-core";
+import {
+	DappUI,
+	denominate,
+	getAccountBalance,
+	refreshAccount,
+	sendTransactions,
+	useGetAccountInfo,
+} from "@elrondnetwork/dapp-core";
 import { Balance } from "@elrondnetwork/erdjs/out";
 import axios from "axios";
 import Button from "components/buttons";
@@ -37,7 +44,6 @@ const BuyCard = () => {
 	const { address, account, ...rest } = useGetAccountInfo();
 
 	const [totalLandBalance, setTotalLandBalance] = useState(0);
-	const [totalEgldBalance, setTotalEgldBalance] = useState("0");
 	const [egldPrice, setEgldPrice] = useState(0);
 	const [egldAmount, setEgldAmount] = useState("0");
 	const [landAmount, setLandAmount] = useState("0");
@@ -90,13 +96,7 @@ const BuyCard = () => {
 		}
 	}, [account]);
 
-	useEffect(() => {
-		if (address)
-			getAccountBalance(address).then((balance) => {
-				setTotalEgldBalance(balance);
-			});
-	}, [address]);
-
+	const totalEgldBalance = useMemo(() => (account ? parseInt(account.balance) / 10 ** 18 : 0).toFixed(4), [account]);
 	const disabled =
 		egldAmount === "0" || landAmount === "0" || !egldAmount || !landAmount || timeLeft > 0 || !isWhitelisted;
 
@@ -120,8 +120,7 @@ const BuyCard = () => {
 						/>
 					}
 				/>
-				{/* {address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>} */}
-
+				{address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>}
 				{!isWhitelisted && (
 					<span className="-mb-8 text-sm font-bold text-purple">
 						You are not whitelisted. The list updates periodically.
