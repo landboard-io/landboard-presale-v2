@@ -6,7 +6,8 @@ import routes from "routes";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import NotFound from "pages/404";
 
-const environment = "mainnet";
+// @ts-ignore
+const environment: "mainnet" | "devnet" | "testnet" = process.env.REACT_APP_ELROND_NETWORK ?? "mainnet";
 
 const {
 	TransactionsToastList,

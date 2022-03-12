@@ -10,7 +10,8 @@ import { Balance } from "@elrondnetwork/erdjs/out";
 import axios from "axios";
 import Button from "components/buttons";
 import Input from "components/input";
-import { contractAddress } from "config";
+import { contractAddress as mainnetContractAddress } from "config";
+import { contractAddress as devnetContractAddress } from "config.devnet";
 import dayjs from "dayjs";
 import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
@@ -30,6 +31,10 @@ const variants = {
 };
 
 const conversionRate = 0.0003;
+const contractAddress =
+	process.env.REACT_APP_ELROND_NETWORK === "mainnet" ? mainnetContractAddress : devnetContractAddress;
+const environment =
+	process.env.REACT_APP_ELROND_NETWORK === "mainnet" ? "" : process.env.REACT_APP_ELROND_NETWORK + "-";
 
 const LabelButton = (props: any) => (
 	<button
@@ -82,14 +87,14 @@ const BuyCard = () => {
 	};
 
 	useEffect(() => {
-		axios.get("https://api.elrond.com/economics").then((res: any) => {
+		axios.get(`https://${environment}api.elrond.com/economics`).then((res: any) => {
 			setEgldPrice(res.data.price);
 		});
 	}, []);
 
 	useEffect(() => {
 		if (account.address != "") {
-			axios.get(`https://api.elrond.com/accounts/${account.address}/tokens`).then((res: any) => {
+			axios.get(`https://${environment}api.elrond.com/accounts/${account.address}/tokens`).then((res: any) => {
 				if (res.data?.length > 0)
 					setTotalLandBalance(res.data.filter((a: any) => a.identifier === "LAND-40f26f")[0].balance / 10 ** 18);
 			});
