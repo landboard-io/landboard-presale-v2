@@ -120,13 +120,22 @@ const BuyCard = () => {
 						/>
 					}
 				/>
-				{address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>}
+				{address && (
+					<p className="tiny-label">
+						<span>You have {totalEgldBalance} EGLD</span>
+						<span>
+							You will receive 20% unlocked and 80% locked tokens (
+							<a href="https://twitter.com/landboard_io/status/1494239023094767619?s=21">see vesting period here</a>)
+						</span>
+					</p>
+				)}
+
 				{!isWhitelisted && (
 					<span className="-mb-8 text-sm font-bold text-purple">
 						You are not whitelisted. The list updates periodically.
 					</span>
 				)}
-				{isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are whitelisted!</span>}
+				{isWhitelisted && <span className="text-sm font-bold text-purple">You are whitelisted!</span>}
 				<Button
 					className="w-full filled"
 					containerClassname="mt-5"

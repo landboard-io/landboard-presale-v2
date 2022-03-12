@@ -3,6 +3,7 @@ import Earth from "components/icons/Earth";
 import Tag from "components/icons/Tag";
 import User from "components/icons/User";
 import ProgressBar from "components/progressbar";
+import PurpleUnlock from "components/icons/PurpleUnlock";
 
 const variants = {
 	hidden: {
@@ -24,7 +25,7 @@ interface InfoCardProps {
 	percentage: number;
 }
 
-const Icons = [<Tag />, <Earth />, <User />];
+const Icons = [<Tag />, <Earth />, <User />, <PurpleUnlock />];
 
 const InfoCard = ({ day, month, title, details, totalSold, percentage }: InfoCardProps) => {
 	return (
