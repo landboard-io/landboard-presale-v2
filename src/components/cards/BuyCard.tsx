@@ -110,7 +110,15 @@ const BuyCard = () => {
 		<motion.div variants={variants} className="pb-10 card">
 			<h2 className="mb-10">Buy LAND Token</h2>
 			<form className="flex flex-col gap-5 text-left" onSubmit={buyToken}>
-				<Input label="YOU BUY" tag="LAND" type="number" value={landAmount} onChange={handleChangeLandAmount} />
+				<Input
+					inputMode="numeric"
+					pattern="[0-9]*"
+					label="YOU BUY"
+					tag="LAND"
+					type="number"
+					value={landAmount}
+					onChange={handleChangeLandAmount}
+				/>
 				{address && <span className="tiny-label">You have {totalLandBalance} LAND</span>}
 				<Input
 					label="YOU PAY"
@@ -118,6 +126,8 @@ const BuyCard = () => {
 					type="number"
 					value={egldAmount}
 					onChange={handleChangeEgldAmount}
+					inputMode="numeric"
+					pattern="[0-9]*"
 					LabelButton={
 						<LabelButton
 							onClick={() =>
