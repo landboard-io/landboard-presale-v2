@@ -125,11 +125,19 @@ const BuyCard = () => {
 						/>
 					}
 				/>
-				{address && <span className="tiny-label">You have {totalEgldBalance} EGLD</span>}
-				{!isWhitelisted && (
-					<span className="-mb-8 text-sm font-bold text-purple">
-						You are not whitelisted. The list updates periodically.
-					</span>
+				{address && (
+					<p className="tiny-label">
+						<span>Minimum buy 0.2 $EGLD</span>
+						<span>You have {totalEgldBalance} EGLD</span>
+						<span>
+							You will receive 20% unlocked and 80% locked tokens (
+							<a href="https://twitter.com/landboard_io/status/1494239023094767619?s=21">see vesting period here</a>)
+						</span>
+					</p>
+				)}
+
+				{!isWhitelisted && address && (
+					<span className="-mb-8 text-sm font-bold">You are not whitelisted. The list updates periodically.</span>
 				)}
 				{isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are whitelisted!</span>}
 				<Button

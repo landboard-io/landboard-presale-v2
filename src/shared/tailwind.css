@@ -88,7 +88,7 @@ h2 {
 }
 
 .account-button__tag-container {
-	@apply absolute bottom-10 w-full px-2;
+	@apply absolute w-full px-2 bottom-10;
 }
 
 hr {
@@ -167,7 +167,7 @@ body::-webkit-scrollbar-thumb:hover {
 	@apply w-full mb-2;
 }
 .modal-container {
-	@apply grid px-5 place-content-center h-full;
+	@apply grid h-full px-5 place-content-center;
 }
 .modal-content {
 	@apply grid place-content-center;
@@ -222,5 +222,9 @@ body::-webkit-scrollbar-thumb:hover {
 	@apply flex flex-col items-center justify-center w-full gap-5;
 }
 .tiny-label {
-	@apply mt-[-12px] text-sm font-bold text-purple;
+	@apply mt-[-12px] text-sm font-bold flex flex-col gap-1;
+}
+.tiny-label > span > a {
+	@apply text-purple;
+	text-decoration: underline !important;
 }
