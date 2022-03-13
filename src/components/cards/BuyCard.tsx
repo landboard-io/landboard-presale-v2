@@ -1,21 +1,13 @@
-import {
-	DappUI,
-	denominate,
-	getAccountBalance,
-	refreshAccount,
-	sendTransactions,
-	useGetAccountInfo,
-} from "@elrondnetwork/dapp-core";
+import { refreshAccount, sendTransactions, useGetAccountInfo } from "@elrondnetwork/dapp-core";
 import { Balance } from "@elrondnetwork/erdjs/out";
 import axios from "axios";
 import Button from "components/buttons";
 import Input from "components/input";
 import { contractAddress } from "config";
-import dayjs from "dayjs";
 import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
 import { useEffect, useMemo, useState } from "react";
-import useCountDown from "react-countdown-hook";
+
 import whitelistedAddresses from "./data.json";
 
 const variants = {
@@ -139,7 +131,8 @@ const BuyCard = () => {
 					className="w-full filled"
 					containerClassname="mt-5"
 					type="submit"
-					disabled={disabled || !isWhitelisted}
+					// disabled={disabled || !isWhitelisted}
+					disabled={true}
 					hideComingSoon>
 					BUY $LAND
 				</Button>
