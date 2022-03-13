@@ -45,8 +45,8 @@ const BuyCard = () => {
 
 	const [totalLandBalance, setTotalLandBalance] = useState(0);
 	const [egldPrice, setEgldPrice] = useState(0);
-	const [egldAmount, setEgldAmount] = useState("0");
-	const [landAmount, setLandAmount] = useState("0");
+	const [egldAmount, setEgldAmount] = useState("0.2");
+	const [landAmount, setLandAmount] = useState("666.666");
 	const isWhitelisted = useMemo(
 		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
 		[address]
@@ -122,6 +122,7 @@ const BuyCard = () => {
 				/>
 				{address && (
 					<p className="tiny-label">
+						<span>Minimum buy 0.2 $EGLD</span>
 						<span>You have {totalEgldBalance} EGLD</span>
 						<span>
 							You will receive 20% unlocked and 80% locked tokens (
@@ -131,11 +132,9 @@ const BuyCard = () => {
 				)}
 
 				{!isWhitelisted && (
-					<span className="-mb-8 text-sm font-bold text-purple">
-						You are not whitelisted. The list updates periodically.
-					</span>
+					<span className="-mb-8 text-sm font-bold">You are not whitelisted. The list updates periodically.</span>
 				)}
-				{isWhitelisted && <span className="text-sm font-bold text-purple">You are whitelisted!</span>}
+				{isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are whitelisted!</span>}
 				<Button
 					className="w-full filled"
 					containerClassname="mt-5"
