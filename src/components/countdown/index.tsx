@@ -18,7 +18,8 @@ const cardVariants = {
 };
 
 const CountDown = () => {
-	const [play, setPlay] = useLocalStorage("play", false);
+	const initialPlay = window.localStorage.getItem("play");
+	const [play, setPlay] = useState(false);
 	const [played, setPlayed] = useState(false);
 
 	const { address, ...rest } = useGetAccountInfo();
@@ -29,7 +30,7 @@ const CountDown = () => {
 	const { days, hours, minutes, seconds, timeLeft } = useTimeUntilLaunch(isWhitelisted);
 
 	useEffect(() => {
-		if (timeLeft === 0 && !played) {
+		if (timeLeft === 0 && !initialPlay) {
 			setPlay(true);
 		}
 	}, [timeLeft]);

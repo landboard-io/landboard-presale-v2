@@ -14,6 +14,7 @@ const useTimeUntilLaunch = (isWhitelisted?: boolean) => {
 	} else {
 		timeUntilLaunchDate = presaleDate;
 	}
+
 	const countdown = useCountdown(() => timeUntilLaunchDate);
 
 	return { ...parseMs(countdown), timeLeft: countdown };

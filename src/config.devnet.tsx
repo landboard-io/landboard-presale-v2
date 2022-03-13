@@ -1,5 +1,5 @@
 export const contractAddress = "erd1qqqqqqqqqqqqqpgqvvtshchxngsrl0h3g53nsvwv7tl3dl4mqc3sdwt7w7";
 export const dAppName = "LandBoard Presale";
 
-export const whitelistDate = 1647178800000; // 1647280800000;
-export const presaleDate = 1647171000000;
+export const whitelistDate = 1647179100000; // 1647280800000;
+export const presaleDate = 1647367200000;
