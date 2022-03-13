@@ -56,14 +56,20 @@ const BuyCard = () => {
 	const { timeLeft } = useTimeUntilLaunch(isWhitelisted);
 
 	const handleChangeEgldAmount = (e: any) => {
-		if (e.target.value <= 1) {
+		const regex = RegExp(/[0-9]+/g);
+		const test_result = regex.test(e.target.value);
+
+		if ((test_result && e.target.value <= 1) || e.target.value == "") {
 			setEgldAmount(e.target.value);
 			setLandAmount((e.target.value / conversionRate).toFixed(4));
 		}
 	};
 
 	const handleChangeLandAmount = (e: any) => {
-		if (e.target.value <= 3333.3333) {
+		const regex = RegExp(/[0-9]+/g);
+		const test_result = regex.test(e.target.value);
+
+		if ((test_result && e.target.value <= 3333.3333) || e.target.value == "") {
 			setLandAmount(e.target.value);
 			setEgldAmount((e.target.value * conversionRate).toFixed(4));
 		}
@@ -110,24 +116,13 @@ const BuyCard = () => {
 		<motion.div variants={variants} className="pb-10 card">
 			<h2 className="mb-10">Buy LAND Token</h2>
 			<form className="flex flex-col gap-5 text-left" onSubmit={buyToken}>
-				<Input
-					inputMode="numeric"
-					pattern="[0-9]*"
-					label="YOU BUY"
-					tag="LAND"
-					type="number"
-					value={landAmount}
-					onChange={handleChangeLandAmount}
-				/>
+				<Input label="YOU BUY" tag="LAND" value={landAmount} onChange={handleChangeLandAmount} />
 				{address && <span className="tiny-label">You have {totalLandBalance} LAND</span>}
 				<Input
 					label="YOU PAY"
 					tag="EGLD"
-					type="number"
 					value={egldAmount}
 					onChange={handleChangeEgldAmount}
-					inputMode="numeric"
-					pattern="[0-9]*"
 					LabelButton={
 						<LabelButton
 							onClick={() =>
