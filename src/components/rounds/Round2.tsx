@@ -6,7 +6,9 @@ import InfoCard from "components/cards/InfoCard";
 import CountDown from "components/countdown";
 import PurpleWhitelist from "components/icons/PurpleWhitelist";
 import { motion } from "framer-motion/dist/framer-motion";
-import { useEffect, useState } from "react";
+import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
+import { useEffect, useMemo, useState } from "react";
+import whitelistedAddresses from "components/cards/data.json";
 
 const variants = {
 	hidden: {
@@ -32,6 +34,14 @@ const textVariants = {
 };
 
 const Round1 = () => {
+	const { address, ...rest } = useGetAccountInfo();
+
+	const isWhitelisted = useMemo(
+		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
+		[address]
+	);
+	const { timeLeft } = useTimeUntilLaunch(isWhitelisted);
+
 	return (
 		// @ts-ignore
 		<motion.div
@@ -43,7 +53,7 @@ const Round1 = () => {
 			<CountDown />
 			<motion.div variants={textVariants} className="flex flex-col gap-3 mt-5">
 				<h1>
-					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE SOON
+					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE {timeLeft > 0 ? "SOON" : "NOOOOOW"}
 				</h1>
 				<p>
 					Round 2 <span className="text-purple">WHITELISTED</span> presale starts on 14 March 2022 18:00 UTC.
@@ -64,7 +74,7 @@ const Round1 = () => {
 				<InfoCard
 					day={15}
 					month="Mar"
-					title="Round 2 - Presale Soon"
+					title={`Round 2 - Presale ${timeLeft > 0 ? "Soon" : "Now"}`}
 					details={[
 						"Price per token: 0.0003 $EGLD",
 						"Tokens supply: 7.500.000 $LAND (7.5%)",

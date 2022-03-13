@@ -1,22 +1,15 @@
-import {
-	DappUI,
-	denominate,
-	getAccountBalance,
-	refreshAccount,
-	sendTransactions,
-	useGetAccountInfo,
-} from "@elrondnetwork/dapp-core";
+import { refreshAccount, sendTransactions, useGetAccountInfo } from "@elrondnetwork/dapp-core";
 import { Balance } from "@elrondnetwork/erdjs/out";
 import axios from "axios";
 import Button from "components/buttons";
 import Input from "components/input";
 import { contractAddress as mainnetContractAddress } from "config";
 import { contractAddress as devnetContractAddress } from "config.devnet";
-import dayjs from "dayjs";
 import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
+import useToastTransactions from "hooks/useToastTransactions";
 import { useEffect, useMemo, useState } from "react";
-import useCountDown from "react-countdown-hook";
+import toast from "react-hot-toast";
 import whitelistedAddresses from "./data.json";
 
 const variants = {
@@ -50,6 +43,7 @@ const BuyCard = () => {
 
 	const [totalLandBalance, setTotalLandBalance] = useState(0);
 	const [egldPrice, setEgldPrice] = useState(0);
+	const [transaction, setTransaction] = useState<any>(null);
 	const [egldAmount, setEgldAmount] = useState("0");
 	const [landAmount, setLandAmount] = useState("0");
 	const isWhitelisted = useMemo(
@@ -57,7 +51,9 @@ const BuyCard = () => {
 		[address]
 	);
 
-	const timeLeft = useTimeUntilLaunch(isWhitelisted);
+	const transactionStatus = useToastTransactions(transaction?.sessionId);
+
+	const { timeLeft } = useTimeUntilLaunch(isWhitelisted);
 
 	const handleChangeEgldAmount = (e: any) => {
 		if (e.target.value <= 1) {
@@ -76,14 +72,17 @@ const BuyCard = () => {
 	const buyToken = async (e: any) => {
 		e.preventDefault();
 		const tx = {
-			value: Balance.egld(landAmount),
+			value: Balance.egld(egldAmount),
 			data: "buy",
 			receiver: contractAddress,
 		};
 		await refreshAccount();
-		await sendTransactions({
+		const transaction = await sendTransactions({
 			transactions: tx,
 		});
+		setTransaction(transaction);
+		toast("Sending transaction.");
+		toast("You are buying " + landAmount + " LAND");
 	};
 
 	useEffect(() => {
@@ -95,8 +94,10 @@ const BuyCard = () => {
 	useEffect(() => {
 		if (account.address != "") {
 			axios.get(`https://${environment}api.elrond.com/accounts/${account.address}/tokens`).then((res: any) => {
-				if (res.data?.length > 0)
-					setTotalLandBalance(res.data.filter((a: any) => a.identifier === "LAND-40f26f")[0].balance / 10 ** 18);
+				if (res.data?.length > 0) {
+					const tokens = res.data.filter((a: any) => a?.identifier === "LAND-40f26f" || a?.ticker === "LAND-40f26f");
+					setTotalLandBalance(tokens.length > 0 ? tokens[0].balance / 10 ** 18 : 0);
+				}
 			});
 		}
 	}, [account]);
@@ -144,8 +145,8 @@ const BuyCard = () => {
 					className="w-full filled"
 					containerClassname="mt-5"
 					type="submit"
-					disabled={disabled || !isWhitelisted}
-					hideComingSoon>
+					disabled={disabled}
+					hideComingSoon={!isWhitelisted || !address}>
 					BUY $LAND
 				</Button>
 				<span className="text-xs font-bold">1 EGLD= ${egldPrice} | 1 EGLD = 3333 LAND</span>
