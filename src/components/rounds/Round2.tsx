@@ -69,7 +69,7 @@ const Round1 = () => {
 						"Price per token: 0.0003 $EGLD",
 						"Tokens supply: 7.500.000 $LAND (7.5%)",
 						"Whitelisted addresses: 2250",
-						"Minimum buyȘ 0.2 $EGLD",
+						"Minimum buy 0.2 $EGLD",
 					]}
 					totalSold={0}
 					percentage={0}
