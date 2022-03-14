@@ -43,7 +43,7 @@ const InfoCard = ({ day, month, title, details, totalSold, percentage }: InfoCar
 					</li>
 				))}
 			</ul>
-			<ProgressBar text={`${totalSold} tokens sold out (${percentage}%)`} percentage={percentage} />
+			<ProgressBar text={`${totalSold.toFixed(2)} tokens sold out (${percentage}%)`} percentage={percentage} />
 		</motion.div>
 	);
 };

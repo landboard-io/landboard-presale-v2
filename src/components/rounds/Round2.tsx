@@ -54,22 +54,20 @@ const Round1 = () => {
 
 	useEffect(() => {
 		const id = setInterval(() => {
-			if (address != "") {
-				axios.get(`https://${environment}api.elrond.com/accounts/${contractAddress}/tokens`).then((res: any) => {
-					if (res.data?.length > 0) {
-						const tokens = res.data;
-						const totalLandSold =
-							1_500_000 -
-							tokens.filter((a: any) => a?.identifier === "LAND-40f26f" || a?.ticker === "LAND-40f26f")[0].balance /
-								10 ** 18;
-						const totalLKLandSold =
-							6_000_000 -
-							tokens.filter((a: any) => a?.identifier === "LKLAND-6cf78e" || a?.ticker === "LKLAND-6cf78e")[0].balance /
-								10 ** 18;
-						setTotalSold(totalLandSold + totalLKLandSold);
-					}
-				});
-			}
+			axios.get(`https://${environment}api.elrond.com/accounts/${contractAddress}/tokens`).then((res: any) => {
+				if (res.data?.length > 0) {
+					const tokens = res.data;
+					const totalLandSold =
+						1_500_000 -
+						tokens.filter((a: any) => a?.identifier === "LAND-40f26f" || a?.ticker === "LAND-40f26f")[0].balance /
+							10 ** 18;
+					const totalLKLandSold =
+						6_000_000 -
+						tokens.filter((a: any) => a?.identifier === "LKLAND-6cf78e" || a?.ticker === "LKLAND-6cf78e")[0].balance /
+							10 ** 18;
+					setTotalSold(totalLandSold + totalLKLandSold);
+				}
+			});
 		}, 5000);
 		return () => clearInterval(id);
 	}, [address]);
