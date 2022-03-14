@@ -1,10 +1,10 @@
-import dayjs from "dayjs";
-import React, { Fragment, useEffect, useMemo } from "react";
-import useCountDown from "react-countdown-hook";
+import { useGetAccountInfo } from "@elrondnetwork/dapp-core";
+import Confetti from "components/animation/Confetti";
+import whitelistedAddresses from "components/cards/data.json";
 import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
-import { useGetAccountInfo } from "@elrondnetwork/dapp-core";
-import whitelistedAddresses from "components/cards/data.json";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
+import { useLocalStorage } from "react-use";
 
 const cardVariants = {
 	hidden: {
@@ -18,19 +18,22 @@ const cardVariants = {
 };
 
 const CountDown = () => {
-	const { address, ...rest } = useGetAccountInfo();
+	const initialPlay = window.localStorage.getItem("play");
+	const [play, setPlay] = useState(false);
+	const [played, setPlayed] = useState(false);
 
+	const { address, ...rest } = useGetAccountInfo();
 	const isWhitelisted = useMemo(
 		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
 		[address]
 	);
-	console.log("isWhitelisted", isWhitelisted);
-	const timeLeft = useTimeUntilLaunch(isWhitelisted);
+	const { days, hours, minutes, seconds, timeLeft } = useTimeUntilLaunch(isWhitelisted);
 
-	const days = dayjs(timeLeft).format("D");
-	const hours = dayjs(timeLeft).format("HH");
-	const minutes = dayjs(timeLeft).format("m");
-	const seconds = dayjs(timeLeft).format("ss");
+	useEffect(() => {
+		if (timeLeft === 0 && !initialPlay) {
+			setPlay(true);
+		}
+	}, [timeLeft]);
 
 	const cards = [
 		{ label: "Days", value: days },
@@ -41,15 +44,23 @@ const CountDown = () => {
 
 	return (
 		<div className="countdown">
-			{cards.map(({ value, label }, index) => (
-				<Fragment key={index}>
-					<motion.div variants={cardVariants} className="countdown__card">
-						<span className="countdown__time">{value}</span>
-						<span className="countdown__measure">{label}</span>
-					</motion.div>
-					{index < cards.length - 1 && <motion.span variants={cardVariants}>:</motion.span>}
-				</Fragment>
-			))}
+			<Confetti
+				play={play ?? false}
+				onComplete={() => {
+					setPlay(false);
+					setPlayed(true);
+				}}
+			/>
+			{timeLeft > 0 &&
+				cards.map(({ value, label }, index) => (
+					<Fragment key={index}>
+						<motion.div variants={cardVariants} className="countdown__card">
+							<span className="countdown__time">{value}</span>
+							<span className="countdown__measure">{label}</span>
+						</motion.div>
+						{index < cards.length - 1 && <motion.span variants={cardVariants}>:</motion.span>}
+					</Fragment>
+				))}
 		</div>
 	);
 };

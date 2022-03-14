@@ -1,50 +1,23 @@
+import { presaleDate as prodPresaleDate, whitelistDate as prodWhitelistDate } from "config";
+import { presaleDate as devPresaleDate, whitelistDate as devWhitelistDate } from "config.devnet";
 import dayjs from "dayjs";
-import { useEffect } from "react";
-import useCountDown from "react-countdown-hook";
+import parseMs from "parse-ms";
+import useCountdown from "react-use-countdown";
 
-const interval = 1000;
-const whitelistDate = process.env.REACT_APP_WHITELIST_DATE;
-const presaleDate = process.env.REACT_APP_PRESALE_DATE;
+const presaleDate = process.env.REACT_APP_ELROND_NETWORK === "mainnet" ? prodPresaleDate : devPresaleDate;
+const whitelistDate = process.env.REACT_APP_ELROND_NETWORK === "mainnet" ? prodWhitelistDate : devWhitelistDate;
 
 const useTimeUntilLaunch = (isWhitelisted?: boolean) => {
-	let timeUntilLaunchDate;
+	let timeUntilLaunchDate: any;
 	if (isWhitelisted) {
-		timeUntilLaunchDate = dayjs(whitelistDate)
-			.subtract(1, "day")
-			.diff(dayjs());
+		timeUntilLaunchDate = whitelistDate;
 	} else {
-		timeUntilLaunchDate = dayjs(presaleDate)
-			.subtract(1, "day")
-			.diff(dayjs());
+		timeUntilLaunchDate = presaleDate;
 	}
 
-	const [timeLeft, { start, pause }] = useCountDown(timeUntilLaunchDate, interval);
+	const countdown = useCountdown(() => timeUntilLaunchDate);
 
-	const onFocus = () => {
-		start();
-	};
-
-	const onBlur = () => {
-		pause();
-	};
-
-	useEffect(() => {
-		window.addEventListener("focus", onFocus);
-		window.addEventListener("blur", onBlur);
-
-		onFocus();
-
-		return () => {
-			window.removeEventListener("focus", onFocus);
-			window.removeEventListener("blur", onBlur);
-		};
-	}, []);
-
-	useEffect(() => {
-		start();
-	}, []);
-
-	return timeLeft;
+	return { ...parseMs(countdown), timeLeft: countdown };
 };
 
 export default useTimeUntilLaunch;

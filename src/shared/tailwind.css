@@ -97,7 +97,7 @@ hr {
 
 /* COUNTDOWN */
 .countdown {
-	@apply flex items-center gap-3 font-bold md:gap-10 md:text-5xl;
+	@apply flex items-center justify-center gap-3 font-bold md:gap-10 md:text-5xl;
 }
 .countdown__card {
 	@apply flex flex-col w-[3.75rem] h-[5.625rem] md:w-[11.25rem] md:h-[10rem] md:text-lg font-medium rounded;
@@ -107,6 +107,10 @@ hr {
 }
 .countdown__measure {
 	@apply p-1 bg-purple;
+}
+
+.confetti-animation {
+	@apply absolute z-[100] md:top-[300px] top-[100px];
 }
 
 /* WALLETS DROPDOWN */
@@ -158,6 +162,9 @@ body::-webkit-scrollbar-thumb:hover {
 .card {
 	@apply p-5 rounded;
 	background: #14073b !important;
+}
+.modal-content > .dapp-core-ui-component > .modal-card_wrapper {
+	@apply flex flex-col gap-5 p-5 rounded bg-purple-darkest;
 }
 .unlock-page_cardBody {
 	@apply flex flex-col items-center justify-center w-full;

@@ -1,15 +1,15 @@
-import NavBar from "./components/navbar";
-import { Fragment } from "react";
-import { DappUI, DappProvider } from "@elrondnetwork/dapp-core";
-import { routeNames } from "routes";
-import routes from "routes";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { DappProvider, DappUI } from "@elrondnetwork/dapp-core";
 import NotFound from "pages/404";
+import { Fragment } from "react";
+import { Toaster } from "react-hot-toast";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import routes, { routeNames } from "routes";
+import NavBar from "./components/navbar";
 
-const environment = "mainnet";
+// @ts-ignore
+const environment: "mainnet" | "devnet" | "testnet" = process.env.REACT_APP_ELROND_NETWORK ?? "mainnet";
 
 const {
-	TransactionsToastList,
 	SignTransactionsModals,
 	NotificationModal,
 	DappCorePages: { UnlockPage },
@@ -25,9 +25,8 @@ const App = () => {
 				<Fragment>
 					<NavBar />
 					<main className="container">
-						<TransactionsToastList />
 						<NotificationModal />
-						<SignTransactionsModals className="custom-class-for-modals" />
+						<SignTransactionsModals className="modal-card" />
 						<Routes>
 							<Route path={routeNames.unlock} element={<UnlockPage loginRoute={routeNames.presale} />} />
 							{routes.map((route: any, index: number) => (
@@ -35,6 +34,12 @@ const App = () => {
 							))}
 							<Route path="*" element={<NotFound />} />
 						</Routes>
+						<Toaster
+							toastOptions={{
+								className: "z-[10000]",
+								position: "bottom-right",
+							}}
+						/>
 					</main>
 				</Fragment>
 			</DappProvider>
