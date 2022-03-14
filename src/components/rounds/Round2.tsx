@@ -65,11 +65,7 @@ const Round1 = () => {
 			<div className="flex flex-col items-center gap-5 mt-5 mb-8 md:flex-row md:gap-10">
 				<Button
 					className="outline w-[18.75rem]"
-<<<<<<< HEAD
-					external="https://docs.google.com/spreadsheets/d/1sfwjZSrhFwviyHGRhwJf9cAUda8ZVSuCv4POD3aZads/edit"
-=======
 					external="https://docs.google.com/spreadsheets/d/1sfwjZSrhFwviyHGRhwJf9cAUda8ZVSuCv4POD3aZads"
->>>>>>> master
 					animate>
 					<PurpleWhitelist /> See Whitelist
 				</Button>
