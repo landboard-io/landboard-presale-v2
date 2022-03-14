@@ -3,7 +3,7 @@ import React from "react";
 
 interface ProgressBarProps {
 	text: string;
-	percentage: number;
+	percentage: string;
 }
 
 const ProgressBar = ({ text, percentage }: ProgressBarProps) => {

@@ -22,7 +22,7 @@ interface InfoCardProps {
 	title: string;
 	details: string[];
 	totalSold: number;
-	percentage: number;
+	percentage: string;
 }
 
 const Icons = [<Tag />, <Earth />, <User />, <PurpleUnlock />];

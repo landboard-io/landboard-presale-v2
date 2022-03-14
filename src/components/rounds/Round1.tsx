@@ -39,7 +39,7 @@ const Round1 = () => {
 						"Whitelisted addresses: 500",
 					]}
 					totalSold={2_500_000}
-					percentage={100}
+					percentage="100"
 				/>
 			</div>
 		</motion.div>

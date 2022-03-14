@@ -9,6 +9,9 @@ import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
 import { useEffect, useMemo, useState } from "react";
 import whitelistedAddresses from "components/cards/data.json";
+import { useInterval } from "react-use";
+import { contractAddress as mainnetContractAddress } from "config";
+import { contractAddress as devnetContractAddress } from "config.devnet";
 
 const variants = {
 	hidden: {
@@ -33,14 +36,43 @@ const textVariants = {
 	},
 };
 
+const contractAddress =
+	process.env.REACT_APP_ELROND_NETWORK === "mainnet" ? mainnetContractAddress : devnetContractAddress;
+const environment =
+	process.env.REACT_APP_ELROND_NETWORK === "mainnet" ? "" : process.env.REACT_APP_ELROND_NETWORK + "-";
+
 const Round1 = () => {
 	const { address, ...rest } = useGetAccountInfo();
+
+	const [totalSold, setTotalSold] = useState(0);
 
 	const isWhitelisted = useMemo(
 		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
 		[address]
 	);
 	const { timeLeft } = useTimeUntilLaunch(isWhitelisted);
+
+	useEffect(() => {
+		const id = setInterval(() => {
+			if (address != "") {
+				axios.get(`https://${environment}api.elrond.com/accounts/${contractAddress}/tokens`).then((res: any) => {
+					if (res.data?.length > 0) {
+						const tokens = res.data;
+						const totalLandSold =
+							1_500_000 -
+							tokens.filter((a: any) => a?.identifier === "LAND-40f26f" || a?.ticker === "LAND-40f26f")[0].balance /
+								10 ** 18;
+						const totalLKLandSold =
+							6_000_000 -
+							tokens.filter((a: any) => a?.identifier === "LKLAND-6cf78e" || a?.ticker === "LKLAND-6cf78e")[0].balance /
+								10 ** 18;
+						setTotalSold(totalLandSold + totalLKLandSold);
+					}
+				});
+			}
+		}, 5000);
+		return () => clearInterval(id);
+	}, [address]);
 
 	return (
 		// @ts-ignore
@@ -81,8 +113,8 @@ const Round1 = () => {
 						"Whitelisted addresses: 1160",
 						"Minimum buy 0.2: $EGLD",
 					]}
-					totalSold={0}
-					percentage={0}
+					totalSold={totalSold}
+					percentage={((totalSold / 7_500_000) * 100).toFixed(2)}
 				/>
 				<BuyCard />
 			</div>
