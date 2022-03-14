@@ -45,8 +45,8 @@ const BuyCard = () => {
 
 	const [totalLandBalance, setTotalLandBalance] = useState(0);
 	const [egldPrice, setEgldPrice] = useState(0);
-	const [egldAmount, setEgldAmount] = useState("0.2");
-	const [landAmount, setLandAmount] = useState("666.666");
+	const [egldAmount, setEgldAmount] = useState("0");
+	const [landAmount, setLandAmount] = useState("0");
 	const isWhitelisted = useMemo(
 		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
 		[address]
@@ -131,7 +131,7 @@ const BuyCard = () => {
 					</p>
 				)}
 
-				{!isWhitelisted && (
+				{!isWhitelisted && address && (
 					<span className="-mb-8 text-sm font-bold">You are not whitelisted. The list updates periodically.</span>
 				)}
 				{isWhitelisted && <span className="-mb-8 text-sm font-bold text-purple">You are whitelisted!</span>}

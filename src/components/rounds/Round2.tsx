@@ -55,9 +55,9 @@ const Round1 = () => {
 			<div className="flex flex-col items-center gap-5 mt-5 mb-8 md:flex-row md:gap-10">
 				<Button
 					className="outline w-[18.75rem]"
-					external="https://docs.google.com/forms/d/e/1FAIpQLSfo4h-Ou7uu1EKsv8b930xo9xWmk85L5s8UMAF-dE1kMlQMJQ/viewform"
+					external="https://docs.google.com/spreadsheets/d/1sfwjZSrhFwviyHGRhwJf9cAUda8ZVSuCv4POD3aZads/edit"
 					animate>
-					<PurpleWhitelist /> Join Whitelist
+					<PurpleWhitelist /> See Whitelist
 				</Button>
 			</div>
 			<div className="flex flex-col gap-10 md:gap-32 md:flex-row">
@@ -69,7 +69,7 @@ const Round1 = () => {
 						"Price per token: 0.0003 $EGLD",
 						"Tokens supply: 7.500.000 $LAND (7.5%)",
 						"Whitelisted addresses: 2250",
-						"Minimum buy 0.2 $EGLD",
+						"Minimum buy 0.2: $EGLD",
 					]}
 					totalSold={0}
 					percentage={0}
