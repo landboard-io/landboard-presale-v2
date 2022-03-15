@@ -132,8 +132,7 @@ const BuyCard = () => {
     landAmount === "0" ||
     !egldAmount ||
     !landAmount ||
-    timeLeft > 0 ||
-    !isWhitelisted;
+    !address;
 
   const accountEgldBalance = parseInt(totalEgldBalance);
 
