@@ -135,6 +135,8 @@ const BuyCard = () => {
     timeLeft > 0 ||
     !isWhitelisted;
 
+  const accountEgldBalance = parseInt(totalEgldBalance);
+
   return (
     <motion.div variants={variants} className="pb-10 card">
       <h2 className="mb-10">Buy LAND Token</h2>
@@ -159,8 +161,10 @@ const BuyCard = () => {
                 handleChangeEgldAmount({
                   target: {
                     value:
-                      parseInt(totalEgldBalance) < 1
-                        ? parseInt(totalEgldBalance) - 0.075
+                      accountEgldBalance < 1
+                        ? accountEgldBalance > 0.0075
+                          ? accountEgldBalance - 0.0075
+                          : 0
                         : 1,
                   },
                 })
