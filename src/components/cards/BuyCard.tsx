@@ -134,7 +134,7 @@ const BuyCard = () => {
     !landAmount ||
     !address;
 
-  const accountEgldBalance = parseInt(totalEgldBalance);
+  const accountEgldBalance = parseFloat(totalEgldBalance);
 
   return (
     <motion.div variants={variants} className="pb-10 card">
@@ -162,7 +162,7 @@ const BuyCard = () => {
                     value:
                       accountEgldBalance < 1
                         ? accountEgldBalance > 0.0075
-                          ? accountEgldBalance - 0.0075
+                          ? (accountEgldBalance - 0.0075).toFixed(4)
                           : 0
                         : 1,
                   },
