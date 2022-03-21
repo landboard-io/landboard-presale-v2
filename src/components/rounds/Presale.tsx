@@ -8,7 +8,7 @@ const Presale = () => {
 	const [round, setRound] = useState(2);
 
 	return (
-		<div className="z-10">
+		<div className="z-10 ">
 			<RoundPicker round={round} setRound={setRound} />
 			<AnimatePresence>{round === 1 && <Round1 />}</AnimatePresence>
 			<AnimatePresence>{round === 2 && <Round2 />}</AnimatePresence>
