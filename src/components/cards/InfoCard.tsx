@@ -4,6 +4,7 @@ import Tag from "components/icons/Tag";
 import User from "components/icons/User";
 import ProgressBar from "components/progressbar";
 import PurpleUnlock from "components/icons/PurpleUnlock";
+import Tile from "components/icons/Tile";
 
 const variants = {
 	hidden: {
@@ -25,7 +26,7 @@ interface InfoCardProps {
 	percentage: string;
 }
 
-const Icons = [<Tag />, <Earth />, <User />, <PurpleUnlock />];
+const Icons = [<Tag />, <Earth />, <User />, <PurpleUnlock />, <Tile />];
 
 const InfoCard = ({ day, month, title, details, totalSold, percentage }: InfoCardProps) => {
 	return (

@@ -2,16 +2,15 @@ import { useGetAccountInfo } from "@elrondnetwork/dapp-core";
 import axios from "axios";
 import Button from "components/buttons";
 import BuyCard from "components/cards/BuyCard";
+import whitelistedAddresses from "components/cards/data.json";
 import InfoCard from "components/cards/InfoCard";
 import CountDown from "components/countdown";
 import PurpleWhitelist from "components/icons/PurpleWhitelist";
+import { contractAddress as mainnetContractAddress } from "config";
+import { contractAddress as devnetContractAddress } from "config.devnet";
 import { motion } from "framer-motion/dist/framer-motion";
 import useTimeUntilLaunch from "hooks/useTimeUntilLaunch";
 import { useEffect, useMemo, useState } from "react";
-import whitelistedAddresses from "components/cards/data.json";
-import { useInterval } from "react-use";
-import { contractAddress as mainnetContractAddress } from "config";
-import { contractAddress as devnetContractAddress } from "config.devnet";
 
 const variants = {
 	hidden: {
@@ -50,7 +49,7 @@ const Round1 = () => {
 		() => whitelistedAddresses.data.some((waddress: any) => waddress.address.trim() === address.trim()),
 		[address]
 	);
-	const { timeLeft } = useTimeUntilLaunch(isWhitelisted);
+	const { timeLeft, presaleOngoing } = useTimeUntilLaunch(isWhitelisted);
 
 	useEffect(() => {
 		const id = setInterval(() => {
@@ -83,8 +82,9 @@ const Round1 = () => {
 			<CountDown />
 			<motion.div variants={textVariants} className="flex flex-col gap-3 mt-5">
 				<h1>
-					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE {timeLeft > 0 ? "SOON" : "NOOOOOW"}
+					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE NOOOW
 				</h1>
+				<p>Round 2 presale ends on 30 March 2022 18:00 UTC.</p>
 				<p>
 					Round 2 <span className="text-purple">WHITELISTED</span> presale starts on 14 March 2022 18:00 UTC.
 				</p>
@@ -110,6 +110,7 @@ const Round1 = () => {
 						"Tokens supply: 7.500.000 $LAND (7.5%)",
 						"Whitelisted addresses: 1160",
 						"Minimum buy 0.2: $EGLD",
+						"1 EGLD spent = 1 tile aidrop",
 					]}
 					totalSold={totalSold}
 					percentage={((totalSold / 7_500_000) * 100).toFixed(2)}
