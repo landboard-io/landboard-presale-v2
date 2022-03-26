@@ -121,7 +121,7 @@ hr {
 
 /* CARD */
 .card {
-	@apply min-h-[20.75rem] w-[23rem] md:min-h-[24rem]  md:w-[25rem] relative pt-10 flex flex-col rounded bg-purple-darkest items-center;
+	@apply min-h-[20.75rem] w-[23rem] md:min-h-[29rem]  md:w-[25rem] relative pt-10 flex flex-col rounded bg-purple-darkest items-center;
 }
 .card__date {
 	@apply flex flex-col absolute -top-8 w-[3.75rem] h-[5.625rem] font-medium;
