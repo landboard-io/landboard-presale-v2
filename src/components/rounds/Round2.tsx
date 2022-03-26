@@ -85,12 +85,6 @@ const Round1 = () => {
 					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE NOOOW
 				</h1>
 				<p>Round 2 presale ends on 30 March 2022 18:00 UTC.</p>
-				<p>
-					Round 2 <span className="text-purple">WHITELISTED</span> presale starts on 14 March 2022 18:00 UTC.
-				</p>
-				<p>
-					Round 2 <span className="text-purple">PUBLIC</span> presale starts on 15 March 2022 18:00 UTC.
-				</p>
 			</motion.div>
 			<div className="flex flex-col items-center gap-5 mt-5 mb-8 md:flex-row md:gap-10">
 				<Button
