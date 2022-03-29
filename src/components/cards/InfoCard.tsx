@@ -26,7 +26,7 @@ interface InfoCardProps {
 	percentage: string;
 }
 
-const Icons = [<Tag />, <Earth />, <User />, <PurpleUnlock />, <Tile />];
+const Icons = [<Tag />, <Earth />, <User />, <Tile />];
 
 const InfoCard = ({ day, month, title, details, totalSold, percentage }: InfoCardProps) => {
 	return (

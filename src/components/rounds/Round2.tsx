@@ -102,7 +102,6 @@ const Round1 = () => {
 					details={[
 						"Price per token: 0.0003 $EGLD",
 						"Tokens supply: 7.500.000 $LAND (7.5%)",
-						"Whitelisted addresses: 1160",
 						"Minimum buy 0.2: $EGLD ",
 						"1 EGLD spent = 1 tile aidrop",
 					]}
