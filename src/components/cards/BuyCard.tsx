@@ -147,7 +147,12 @@ const BuyCard = () => {
 						</span>
 					</p>
 				)}
-				<Button className="w-full filled" containerClassname="mt-5" type="submit" disabled={disabled} hideComingSoon>
+				<Button
+					className="w-full filled"
+					containerClassname="mt-5"
+					type="submit"
+					disabled={timeLeft == 0}
+					hideComingSoon>
 					BUY $LAND
 				</Button>
 				<span className="text-xs font-bold">1 EGLD= ${egldPrice} | 1 EGLD = 3333 LAND</span>
