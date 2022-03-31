@@ -24,6 +24,7 @@ const App = () => {
 				completedTransactionsDelay={200}>
 				<Fragment>
 					<NavBar />
+
 					<main className="container">
 						<NotificationModal />
 						<SignTransactionsModals className="modal-card" />
