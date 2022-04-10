@@ -82,9 +82,9 @@ const Round1 = () => {
 			<CountDown />
 			<motion.div variants={textVariants} className="flex flex-col gap-3 mt-5">
 				<h1>
-					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE NOOOW
+					<span className="text-purple">ROUND 2</span> - LAND TOKEN PRESALE ENDED
 				</h1>
-				<p>Round 2 presale ends on 30 March 2022 18:00 UTC.</p>
+				<p>Round 2 presale finished.</p>
 			</motion.div>
 			<div className="flex flex-col items-center gap-5 mt-5 mb-8 md:flex-row md:gap-10">
 				<Button
