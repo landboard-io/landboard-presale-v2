@@ -1,3 +1,15 @@
+# Presale Interface
+
+The React.js frontend used for hosting the LAND presale, utilizing the Elrond blockchain as a backend.
+
+
+---
+
+
+For production, check out [the presale page]("https://presale.landboard.io/").  
+
+Smart contract can be found [here]("https://github.com/landboard-io/landboard-ico-second-sc").
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
