@@ -6,9 +6,9 @@ The React.js frontend used for hosting the LAND presale, utilizing the Elrond bl
 ---
 
 
-For production, check out [the presale page]("https://presale.landboard.io/").  
+For production, check out [the presale page](https://presale.landboard.io/).  
 
-Smart contract can be found [here]("https://github.com/landboard-io/landboard-ico-second-sc").
+Smart contract can be found [here](https://github.com/landboard-io/landboard-ico-second-sc).
 
 # Getting Started with Create React App
 
